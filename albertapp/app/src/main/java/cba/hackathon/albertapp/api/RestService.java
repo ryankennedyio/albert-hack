@@ -15,7 +15,7 @@ import retrofit.http.POST;
 public interface RestService {
 
     @GET("/wc-api/v2/products")
-    void listProducts(Callback<List<Product>> productListCallback);
+    void getProducts(Callback<List<Product>> productListCallback);
 
     @POST("/wc-api/v2/orders")
     void createOrder(@Body Order order, Callback<Order> confirmedOrder);
