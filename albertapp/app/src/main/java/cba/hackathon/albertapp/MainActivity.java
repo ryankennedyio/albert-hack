@@ -18,6 +18,8 @@ import java.util.Currency;
 public class MainActivity extends AppCompatActivity {
 
     public static int REQUEST_PAYMENT = 0;
+    public static String PAYMENT_APPROVED = "APPROVED";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +46,10 @@ public class MainActivity extends AppCompatActivity {
         TransactionResult result = TransactionResult.fromIntent(data);
         // Use a toast to show the transaction result.
         Toast.makeText(this, "Transaction result: " + result.getTransactionStatus(), Toast.LENGTH_LONG).show();
+
+        /* If the transaction was approved, make a POST request on the order to WooCommerce */
+        if ( PAYMENT_APPROVED.equals(result.getTransactionStatus().name())) {
+
+        }
     }
 }
