@@ -15,16 +15,29 @@ import com.aevi.payment.TransactionResult;
 import java.math.BigDecimal;
 import java.util.Currency;
 
-public class MainActivity extends AppCompatActivity {
+import cba.hackathon.albertapp.api.RestService;
+import cba.hackathon.albertapp.models.Order;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
+public class MainActivity extends AppCompatActivity {
     public static int REQUEST_PAYMENT = 0;
     public static String PAYMENT_APPROVED = "APPROVED";
 
+    private RestService mApi;
+    private Order mockOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /* Set up the API */
+        mApi = ((App) getApplicationContext()).api;
+
+        /* Mock an Order */
+        mockOrder = new Order();
 
         Button paymentButton = (Button) findViewById(R.id.btn_payment);
         paymentButton.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
         /* If the transaction was approved, make a POST request on the order to WooCommerce */
         if ( PAYMENT_APPROVED.equals(result.getTransactionStatus().name())) {
+            mApi.createOrder(mockOrder, new Callback<Order>() {
+                @Override
+                public void success(Order order, Response response) {
+                    //Order created
+                }
 
+                @Override
+                public void failure(RetrofitError error) {
+                    //Order failed
+                }
+            });
         }
     }
 }

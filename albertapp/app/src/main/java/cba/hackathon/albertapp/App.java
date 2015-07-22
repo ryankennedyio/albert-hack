@@ -17,6 +17,7 @@ public class App extends Application {
         //Instantiate a singleton instance of the API
         RestAdapter builder = new RestAdapter.Builder()
                 .setEndpoint(ENDPOINT)
+                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
         api = builder.create(RestService.class);
