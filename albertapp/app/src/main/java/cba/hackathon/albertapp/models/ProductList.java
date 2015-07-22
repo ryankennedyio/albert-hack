@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class ProductList {
     private HashMap<String, Product>  mNameList;
-    private HashMap<String, Product> mSKUList;
+    private HashMap<String, Product>  mSKUList;
 
     public ProductList() {
         mNameList = new HashMap<String, Product>();
