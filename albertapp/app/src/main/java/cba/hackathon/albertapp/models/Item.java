@@ -40,4 +40,12 @@ public class Item {
     public float getTotalPrice() {
         return mCount * getPrice();
     }
+
+    public boolean isEmpty() {
+        return mCount == 0;
+    }
+
+    public void resetCount() {
+        mCount = 0;
+    }
 }
