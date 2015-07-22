@@ -19,6 +19,10 @@ public class ProductList {
         mSKUList.put(product.sku, product);
     }
 
+    public Product getProductByName(String name) {
+        return mNameList.get(name);
+    }
+
     public String[] getProductsNamesList() {
         return mNameList.keySet().toArray(new String[0]);
     }

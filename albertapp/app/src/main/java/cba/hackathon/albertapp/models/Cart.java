@@ -6,17 +6,17 @@ import java.util.ArrayList;
  * Created by Konrad on 22/07/2015.
  */
 public class Cart {
-    private ArrayList<Item> itemList;
-
+    private ArrayList<Item> mItemList;
     private float mTotalPrice;
 
     public Cart() {
+        mItemList = new ArrayList<>();
         mTotalPrice = 0.0f;
     }
 
     public void addProduct(Product product) {
         boolean isContained = false;
-        for (Item item : itemList) {
+        for (Item item : mItemList) {
             if (item.getProductName() == product.title) {
                 item.increment();
                 isContained = true;
@@ -25,13 +25,13 @@ public class Cart {
         }
         if (!isContained) {
             Item item = new Item(product, 1);
-            itemList.add(item);
+            mItemList.add(item);
             mTotalPrice += item.getPrice();
         }
     }
 
     public void removeProduct(Product product) {
-        for (Item item : itemList) {
+        for (Item item : mItemList) {
             if (item.getProductName() == product.title) {
                 item.decrement();
                 mTotalPrice -= item.getPrice();
@@ -40,7 +40,7 @@ public class Cart {
     }
 
     public void removeAllOfProduct(Product product) {
-        for (Item item : itemList) {
+        for (Item item : mItemList) {
             if (item.getProductName() == product.title) {
                 mTotalPrice -= item.getTotalPrice();
                 item.resetCount();
@@ -51,11 +51,11 @@ public class Cart {
     public float getTotalPrice() { return mTotalPrice; }
 
     public void wipeItems() {
-        itemList.clear();
+        mItemList.clear();
     }
 
     public ArrayList<Item> getProductList() {
-        return itemList;
+        return mItemList;
     }
 
 }
