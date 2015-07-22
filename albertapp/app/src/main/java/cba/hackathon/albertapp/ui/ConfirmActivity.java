@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -37,6 +38,8 @@ public class ConfirmActivity extends BaseActivity {
     private RestService mApi;
     private Cart mCart;
 
+    private ArrayAdapter<String> mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,10 @@ public class ConfirmActivity extends BaseActivity {
         mBackBtn = (Button) findViewById(R.id.btn_empty);
         mEmptyBtn = (Button) findViewById(R.id.btn_empty);
         mPaymentButton = (Button) findViewById(R.id.btn_pay);
+
+        //TODO override onRefresh
+        mAdapter = new ArrayAdapter<String>(this, R.layout.search_item, R.id.product_name, mCart.getProductsNamesList());
+        mCartItems.setAdapter(mAdapter);
     }
 
     @Override

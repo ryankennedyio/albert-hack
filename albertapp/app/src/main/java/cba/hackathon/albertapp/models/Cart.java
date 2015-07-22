@@ -58,4 +58,11 @@ public class Cart {
         return mItemList;
     }
 
+    public String[] getProductsNamesList() {
+        String[] namesList = new String[mItemList.size()];
+        for (int i = 0; i < mItemList.size(); ++i) {
+            namesList[i] = mItemList.get(i).getProductName();
+        }
+        return namesList;
+    }
 }
