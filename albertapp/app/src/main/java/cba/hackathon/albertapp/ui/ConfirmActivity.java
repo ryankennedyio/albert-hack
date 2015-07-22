@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.aevi.payment.PaymentRequest;
@@ -31,6 +32,7 @@ public class ConfirmActivity extends BaseActivity {
     private Button mBackBtn;
     private Button mEmptyBtn;
     private Button mPaymentButton;
+    private ListView mCartItems;
 
     private RestService mApi;
     private Cart mCart;
@@ -49,6 +51,7 @@ public class ConfirmActivity extends BaseActivity {
         mApi = ((App) getApplicationContext()).getApi();
         mCart = ((App) getApplicationContext()).getCart();
 
+        mCartItems = (ListView) findViewById(R.id.list_cart_items);
         mBackBtn = (Button) findViewById(R.id.btn_empty);
         mEmptyBtn = (Button) findViewById(R.id.btn_empty);
         mPaymentButton = (Button) findViewById(R.id.btn_pay);
