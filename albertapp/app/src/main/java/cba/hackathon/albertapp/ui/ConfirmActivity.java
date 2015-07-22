@@ -85,11 +85,12 @@ public class ConfirmActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                //Get the total price in the cart at this time & validate it
-                BigDecimal totalPrice = new BigDecimal( mCart.getTotalPrice() );
+                //Get the total price in the cart at this time, round the float & validate it
+                BigDecimal totalPrice = new BigDecimal(mCart.getTotalPrice());
+                totalPrice = totalPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
 
                 //If the price in the cart is $0.0
-                if ( totalPrice.compareTo(new BigDecimal(0)) <= 0) {
+                if (totalPrice.compareTo(new BigDecimal(0)) <= 0) {
                     Toast.makeText(
                             view.getContext(),
                             "You can't make a payment for $0",
@@ -119,7 +120,7 @@ public class ConfirmActivity extends BaseActivity {
         final Context context = this;
 
         /* If the transaction was approved, make a POST request on the order to WooCommerce */
-        if ( PAYMENT_APPROVED.equals(result.getTransactionStatus().name())) {
+        if (PAYMENT_APPROVED.equals(result.getTransactionStatus().name())) {
             mApi.createOrder(order, new Callback<Order>() {
                 @Override
                 public void success(Order order, Response response) {
@@ -139,7 +140,7 @@ public class ConfirmActivity extends BaseActivity {
 
     }
 
-    private void exitActivity(){
+    private void exitActivity() {
         finish();
     }
 }
