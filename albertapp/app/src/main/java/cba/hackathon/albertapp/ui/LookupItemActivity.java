@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
 
@@ -34,7 +36,7 @@ public class LookupItemActivity extends BaseActivity {
         mApp = ((App) getApplicationContext());
 
         // Adding items to listview
-        mAdapter = new ArrayAdapter<String>(this, R.layout.search_item, R.id.product_name, mApp.getProductList());
+        mAdapter = new ArrayAdapter<String>(this, R.layout.search_item, R.id.product_name, mApp.getProductList().getProductsNamesList());
         mStockItemsList.setAdapter(mAdapter);
 
         /**

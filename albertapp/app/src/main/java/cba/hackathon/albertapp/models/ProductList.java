@@ -19,4 +19,8 @@ public class ProductList {
         mSKUList.put(product.sku, product);
     }
 
+    public String[] getProductsNamesList() {
+        return mNameList.keySet().toArray(new String[0]);
+    }
+
 }
