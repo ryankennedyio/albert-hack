@@ -12,7 +12,7 @@ import retrofit.http.POST;
 /**
  * This interface defines the possible API calls we can make between Android and WooCommerce.
  */
-public interface RestInterface {
+public interface RestService {
 
     @GET("/wc-api/v2/products")
     void listProducts(Callback<List<Product>> productListCallback);
