@@ -95,11 +95,21 @@ public class LookupItemActivity extends BaseActivity {
 
     /**
      * Add to cart when product view clicked
+     *   Specifically when name textview clicked
      */
-    public void onClickProduct(View view) {
+    public void onClickProductName(View view) {
         TextView textView = ((TextView) view);
         mApp.getCart().addProduct(mApp.getProductList().getProductByName(textView.getText().toString()));
         finish();
     }
 
+    /**
+     * Add to cart when product view clicked
+     *   Specifically when sku textview clicked
+     */
+    public void onClickProductSKU(View view) {
+        TextView textView = ((TextView) view);
+        mApp.getCart().addProduct(mApp.getProductList().getProductBySKU(textView.getText().toString()));
+        finish();
+    }
 }

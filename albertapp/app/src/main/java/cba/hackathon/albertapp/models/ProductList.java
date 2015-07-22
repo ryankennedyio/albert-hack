@@ -27,6 +27,10 @@ public class ProductList {
         return mNameList.get(name);
     }
 
+    public Product getProductBySKU(String sku) {
+        return mSKUList.get(sku);
+    }
+
     public String[] getProductsNamesList() {
         return mNameList.keySet().toArray(new String[0]);
     }
