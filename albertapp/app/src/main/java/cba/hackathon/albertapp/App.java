@@ -1,15 +1,24 @@
 package cba.hackathon.albertapp;
 
 import android.app.Application;
+import android.content.Context;
+import android.widget.Toast;
+
+import java.util.List;
 
 import cba.hackathon.albertapp.api.RestService;
 import cba.hackathon.albertapp.models.Cart;
+import cba.hackathon.albertapp.models.Product;
+import cba.hackathon.albertapp.models.ProductList;
+import retrofit.Callback;
 import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class App extends Application {
     private String mCurrentUser;
     private Cart mCart;
-    private String mProductList[];
+    private ProductList mProductList;
     private  RestService mApi;
     public static String ENDPOINT = "http://www.example.com";
 
@@ -22,13 +31,27 @@ public class App extends Application {
                 .setEndpoint(ENDPOINT)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
-
         mApi = builder.create(RestService.class);
 
-        // Fetch products
-        mProductList = new String[]{"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
-                "iPhone 4S", "Samsung Galaxy Note 800",
-                "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
+        // Fetch the products from the server and populate in the callback
+        final Context context = this;
+        mApi.getProducts(new Callback<List<Product>>() {
+            @Override
+            public void success(List<Product> products, Response response) {
+                for ( Product product : products ) {
+                    mProductList.addProduct(product);
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(
+                        context,
+                        "An error occured in retrieving the product list",
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+        });
 
         //Instantiate a instance of the Cart
         mCart = new Cart();
@@ -42,7 +65,7 @@ public class App extends Application {
         return mCart;
     }
 
-    public String[] getProductList() {
+    public ProductList getProductList() {
         return mProductList;
     }
 

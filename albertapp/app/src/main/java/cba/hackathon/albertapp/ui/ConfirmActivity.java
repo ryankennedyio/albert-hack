@@ -104,7 +104,8 @@ public class ConfirmActivity extends BaseActivity {
         TransactionResult result = TransactionResult.fromIntent(data);
 
         //Create an order to send to WooCommerce
-        Order order = new Order(); //TODO not a real order...
+        //TODO not a real order...
+        Order order = new Order();
 
         final Context context = this;
 
