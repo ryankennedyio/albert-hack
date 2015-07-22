@@ -19,6 +19,19 @@ public class ProductList {
         mSKUList.put(product.sku, product);
     }
 
-    public void decrementProduct(String id, int amount) {
+    /**
+     *
+     * @param product
+     * @param amount
+     * @warn Ensure the amount can actually be decremented
+     */
+    public void decrementProduct(Product product, int amount) {
+        Product currentProduct = mNameList.get(product.title);
+        currentProduct.stockQuantity -= amount;
+        if (currentProduct.stockQuantity < 0) {
+            throw new IllegalArgumentException("Not enough products to decrement");
+        }
+
+        addProduct(currentProduct);
     }
 }
