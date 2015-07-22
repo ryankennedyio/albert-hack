@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class ProductList {
     private HashMap<String, Product>  mNameList;
-    private HashMap<String, Product> mSKUList;
+    private HashMap<String, Product>  mSKUList;
 
     public ProductList() {
         mNameList = new HashMap<String, Product>();
@@ -19,6 +19,19 @@ public class ProductList {
         mSKUList.put(product.sku, product);
     }
 
-    public void decrementProduct(String id, int amount) {
+    /**
+     *
+     * @param product
+     * @param amount
+     * @warn Ensure the amount can actually be decremented
+     */
+    public void decrementProduct(Product product, int amount) {
+        Product currentProduct = mNameList.get(product.title);
+        currentProduct.stockQuantity -= amount;
+        if (currentProduct.stockQuantity < 0) {
+            throw new IllegalArgumentException("Not enough products to decrement");
+        }
+
+        addProduct(currentProduct);
     }
 }
