@@ -10,9 +10,23 @@
     <TextView android:id="@+id/product_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dip"
+        android:paddingTop="10dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingBottom="0dip"
         android:textSize="16dip"
         android:textStyle="bold"
+        android:onClick="onClickProduct"
+        android:clickable="true" />
+
+    <TextView android:id="@+id/product_sku"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="0dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingBottom="10dip"
+        android:textSize="12dip"
         android:onClick="onClickProduct"
         android:clickable="true" />
 

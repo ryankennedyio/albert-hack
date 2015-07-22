@@ -4,16 +4,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
+import cba.hackathon.albertapp.models.ProductAdapter;
 
 public class LookupItemActivity extends BaseActivity {
 
@@ -22,7 +20,7 @@ public class LookupItemActivity extends BaseActivity {
     private ListView mStockItemsList;
     private Button mCancel;
 
-    private ArrayAdapter<String> mAdapter;
+    private ProductAdapter mAdapter;
 
     private App mApp;
 
@@ -37,7 +35,7 @@ public class LookupItemActivity extends BaseActivity {
         mApp = ((App) getApplicationContext());
 
         // Adding items to listview
-        mAdapter = new ArrayAdapter<String>(this, R.layout.search_item, R.id.product_name, mApp.getProductList().getProductsNamesList());
+        mAdapter = new ProductAdapter(this, mApp.getProductList());
         mStockItemsList.setAdapter(mAdapter);
 
         /**
@@ -48,7 +46,8 @@ public class LookupItemActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
-                mAdapter.getFilter().filter(cs);
+                // Filter by Name and SKU
+                mAdapter.getFilter().filter(cs.toString());
             }
 
             @Override
@@ -90,7 +89,7 @@ public class LookupItemActivity extends BaseActivity {
         });
     }
 
-    private void exitActivity(){
+    private void exitActivity() {
         finish();
     }
 
@@ -102,4 +101,5 @@ public class LookupItemActivity extends BaseActivity {
         mApp.getCart().addProduct(mApp.getProductList().getProductByName(textView.getText().toString()));
         finish();
     }
+
 }

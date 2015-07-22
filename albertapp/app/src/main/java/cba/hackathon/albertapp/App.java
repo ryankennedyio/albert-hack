@@ -61,7 +61,7 @@ public class App extends Application {
         mockProduct6.price = 14.01f;
         mockProduct6.stockQuantity = 1;
         Product mockProduct7 = new Product();
-        mockProduct7.title = "Konrad";
+        mockProduct7.title = "reconSale";
         mockProduct7.sku = "10328";
         mockProduct7.price = 14.01f;
         mockProduct7.stockQuantity = 1;
