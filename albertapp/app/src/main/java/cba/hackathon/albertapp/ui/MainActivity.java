@@ -14,7 +14,7 @@ public class MainActivity extends BaseActivity {
     private Button mDoneBtn;
 
     @Override
-         protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -55,6 +55,4 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-
-
 }
