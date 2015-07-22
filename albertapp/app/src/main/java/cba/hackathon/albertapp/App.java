@@ -7,12 +7,11 @@ import cba.hackathon.albertapp.models.Cart;
 import retrofit.RestAdapter;
 
 public class App extends Application {
-    public RestService api;
-    public static String ENDPOINT = "http://www.example.com";
-
-    private int mCurrentUser;
+    private String mCurrentUser;
     private Cart mCart;
     private String mProductList[];
+    private  RestService mApi;
+    public static String ENDPOINT = "http://www.example.com";
 
     @Override
     public void onCreate() {
@@ -24,7 +23,7 @@ public class App extends Application {
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
-        api = builder.create(RestService.class);
+        mApi = builder.create(RestService.class);
 
         // Fetch products
         mProductList = new String[]{"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
@@ -35,7 +34,7 @@ public class App extends Application {
         mCart = new Cart();
     }
 
-    public void setUser(int user) {
+    public void setUser(String user) {
         mCurrentUser = user;
     }
 
@@ -47,4 +46,5 @@ public class App extends Application {
         return mProductList;
     }
 
+    public RestService getApi() { return mApi; }
 }
