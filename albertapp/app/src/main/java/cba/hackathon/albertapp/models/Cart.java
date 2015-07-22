@@ -48,6 +48,8 @@ public class Cart {
         }
     }
 
+    public float getTotalPrice() { return mTotalPrice; }
+
     public void wipeItems() {
         itemList.clear();
     }

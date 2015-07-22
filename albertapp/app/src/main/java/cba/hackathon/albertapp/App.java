@@ -8,10 +8,9 @@ import retrofit.RestAdapter;
 
 public class App extends Application {
 
-    private int mCurrentUser;
+    private String mCurrentUser;
     private Cart mCart;
-
-    public RestService api;
+    private  RestService mApi;
     public static String ENDPOINT = "http://www.example.com";
 
     @Override
@@ -24,17 +23,19 @@ public class App extends Application {
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
-        api = builder.create(RestService.class);
+        mApi = builder.create(RestService.class);
 
         //Instantiate a instance of the Cart
         mCart = new Cart();
     }
 
-    public void setUser(int user) {
+    public void setUser(String user) {
         mCurrentUser = user;
     }
 
     public Cart getCart() {
         return mCart;
     }
+
+    public RestService getApi() { return mApi; }
 }
