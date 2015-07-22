@@ -13,7 +13,11 @@ import com.aevi.payment.TransactionResult;
 import java.math.BigDecimal;
 import java.util.Currency;
 
+import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
+import cba.hackathon.albertapp.api.RestService;
+import cba.hackathon.albertapp.models.Cart;
+import cba.hackathon.albertapp.models.Order;
 
 
 public class ConfirmActivity extends BaseActivity {
@@ -22,6 +26,9 @@ public class ConfirmActivity extends BaseActivity {
     private Button mBackBtn;
     private Button mEmptyBtn;
     private Button mPaymentButton;
+
+    private RestService mApi;
+    private Cart mCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,9 @@ public class ConfirmActivity extends BaseActivity {
 
     @Override
     void initResources() {
+        mApi = ((App) getApplicationContext()).api;
+        mCart = ((App) getApplicationContext().cart;
+
         mBackBtn = (Button) findViewById(R.id.btn_empty);
         mEmptyBtn = (Button) findViewById(R.id.btn_empty);
         mPaymentButton = (Button) findViewById(R.id.btn_pay);
@@ -59,6 +69,10 @@ public class ConfirmActivity extends BaseActivity {
         mPaymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Find the current
+
+
                 //Construct a $20 payment
                 PaymentRequest payment = new PaymentRequest(new BigDecimal("20.00"));
                 payment.setCurrency(Currency.getInstance("AUD"));
