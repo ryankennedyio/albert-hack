@@ -100,5 +100,6 @@ public class LookupItemActivity extends BaseActivity {
     public void onClickProduct(View view) {
         TextView textView = ((TextView) view);
         mApp.getCart().addProduct(mApp.getProductList().getProductByName(textView.getText().toString()));
+        finish();
     }
 }
