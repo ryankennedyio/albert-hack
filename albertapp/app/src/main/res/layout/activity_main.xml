@@ -1,53 +1,67 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:orientation="vertical"
-    android:padding="0dp"
-    tools:context=".MainActivity">
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.9"
-        android:background="@mipmap/example_scanner"
-        android:padding="0px"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:padding="0dp"
+        tools:context=".MainActivity">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.8"/>
-        <TextView
-            android:textColor="#FFFFFF"
-            android:text="$27.40"
-            android:layout_width="wrap_content"
+            android:layout_weight="0.9"
+            android:background="@mipmap/example_scanner"
+            android:padding="0px"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"/>
+            <TextView
+                android:id="@+id/text_total_cosi"
+                android:textColor="#FFFFFF"
+                android:text="$0.0"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal|right"
+                android:layout_weight="0.1"
+                android:paddingRight="50px"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center_horizontal|center"
-            android:layout_weight="0.1"/>
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:background="@color/black">
-        <Button
-            android:id="@+id/btn_lookup_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lookup_item"
-            android:layout_alignParentLeft="true"
-            />
-        <Button
-            android:id="@+id/btn_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/done"
-            android:layout_alignParentRight="true"
-            />
-    </RelativeLayout>
+            android:layout_weight="0.1"
+            android:background="@color/black">
+            <Button
+                android:id="@+id/btn_lookup_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lookup_item"
+                android:layout_alignParentLeft="true"
+                />
+            <Button
+                android:id="@+id/btn_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/done"
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/menu_drawer"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="#ffeeeeee"/>
+
+</android.support.v4.widget.DrawerLayout>

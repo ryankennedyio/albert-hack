@@ -3,11 +3,14 @@ package cba.hackathon.albertapp.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aevi.payment.PaymentRequest;
@@ -30,10 +33,10 @@ public class ConfirmActivity extends BaseActivity {
 
     private static int REQUEST_PAYMENT = 0;
     private static String PAYMENT_APPROVED = "APPROVED";
-    private Button mBackBtn;
     private Button mEmptyBtn;
     private Button mPaymentButton;
     private ListView mCartItems;
+    private TextView mTotalCost;
 
     private RestService mApi;
     private Cart mCart;
@@ -44,20 +47,24 @@ public class ConfirmActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
+        addDrawerItems();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         initResources();
         setListeners();
     }
 
     @Override
-    void initResources() {
+    protected void initResources() {
         mApi = ((App) getApplicationContext()).getApi();
         mCart = ((App) getApplicationContext()).getCart();
 
         mCartItems = (ListView) findViewById(R.id.list_cart_items);
-        mBackBtn = (Button) findViewById(R.id.btn_empty);
         mEmptyBtn = (Button) findViewById(R.id.btn_empty);
         mPaymentButton = (Button) findViewById(R.id.btn_pay);
+        mTotalCost = (TextView) findViewById(R.id.text_total_cost);
+        mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
 
         //TODO override onRefresh
         mAdapter = new ArrayAdapter<String>(this, R.layout.search_item, R.id.product_name, mCart.getProductsNamesList());
@@ -65,14 +72,7 @@ public class ConfirmActivity extends BaseActivity {
     }
 
     @Override
-    void setListeners() {
-
-        mBackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                exitActivity();
-            }
-        });
+    protected void setListeners() {
 
         mEmptyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,8 +105,15 @@ public class ConfirmActivity extends BaseActivity {
 
                 //Launch the payment app
                 startActivityForResult(payment.createIntent(), REQUEST_PAYMENT);
+                ConfirmActivity.this.overridePendingTransition(R.anim.push_up_in, R.anim.no_animation);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
     }
 
     @Override
@@ -137,10 +144,5 @@ public class ConfirmActivity extends BaseActivity {
                 }
             });
         }
-
-    }
-
-    private void exitActivity() {
-        finish();
     }
 }

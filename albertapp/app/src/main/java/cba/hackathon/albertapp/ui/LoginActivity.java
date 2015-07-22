@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         setListeners();
     }
 
-    void initResources() {
+    protected void initResources() {
         mLoginBtn = (Button) findViewById(R.id.btn_login);
         mEditPin = (EditText) findViewById(R.id.edit_pin);
         mEditPin.setRawInputType(Configuration.KEYBOARD_QWERTY);
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         imm.showSoftInput(mEditPin, InputMethodManager.SHOW_IMPLICIT);
     }
 
-    void setListeners() {
+    protected void setListeners() {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

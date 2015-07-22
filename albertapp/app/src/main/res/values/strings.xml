@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">albertapp</string>
-
     <string name="hello_world">Hello Albert!</string>
     <string name="action_settings">Settings</string>
     <string name="confirm">Confirm</string>
@@ -13,5 +12,7 @@
     <string name="login">Login</string>
     <string name="pin">Pin</string>
     <string name="cancel">Cancel</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 
 </resources>
