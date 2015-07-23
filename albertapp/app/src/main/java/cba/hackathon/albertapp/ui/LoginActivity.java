@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -50,24 +51,39 @@ public class LoginActivity extends AppCompatActivity {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String input = mEditPin.getText().toString();
-                if (input != null && input.length() != 0) {
-                    mApp.setUser(input);
-                    Toast.makeText(
-                            view.getContext(),
-                            "Logged in as: " + mApp.getUser(),
-                            Toast.LENGTH_SHORT
-                    ).show();
-                    exitActivity();
-                } else {
-                    Toast.makeText(
-                            view.getContext(),
-                            "Login Invalid/Missing",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
+                checkLoginValidAndFinish(view);
             }
         });
+
+        mEditPin.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    checkLoginValidAndFinish(v);
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void checkLoginValidAndFinish(View view) {
+        String input = mEditPin.getText().toString();
+        if (input != null && input.length() != 0) {
+            mApp.setUser(input);
+            Toast.makeText(
+                    view.getContext(),
+                    "Logged in as: " + mApp.getUser(),
+                    Toast.LENGTH_SHORT
+            ).show();
+            exitActivity();
+        } else {
+            Toast.makeText(
+                    view.getContext(),
+                    "Login Invalid/Missing",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
     }
 
     private void exitActivity() {
