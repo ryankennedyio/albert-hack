@@ -53,7 +53,6 @@
                     android:paddingBottom="0dip"
                     android:textSize="16dip"
                     android:textStyle="bold"
-                    android:onClick="onClickProductName"
                     android:clickable="true"
                     android:text="Name"/>
                 <LinearLayout
@@ -70,7 +69,6 @@
                     android:paddingRight="10dip"
                     android:paddingBottom="10dip"
                     android:textSize="12dip"
-                    android:onClick="onClickProductSKU"
                     android:clickable="true"
                     android:text="0123456789"/>
 
