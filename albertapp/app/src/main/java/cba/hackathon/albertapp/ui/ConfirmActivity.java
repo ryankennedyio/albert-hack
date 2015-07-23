@@ -64,12 +64,12 @@ public class ConfirmActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
         addDrawerItems();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
         mTitle = (TextView) findViewById(R.id.actionbar_title);
         mTitle.setText("Confirm Order");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         initResources();
         setListeners();
@@ -202,19 +202,19 @@ public class ConfirmActivity extends BaseActivity {
                             Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.receipt_logo, options);
                             printPayload.append(image);
 
-                            printPayload.append("Southern Cross Arcade                 Pop-up: 0438").align(Alignment.LEFT);
+                            printPayload.append("Southern Cross Arcade        Pop-up: 0438").align(Alignment.LEFT);
                             printPayload.append("Adelaide Showground, 39 Goodwood Rd, Wayville SA 5034").align(Alignment.LEFT);
-                            printPayload.append("Phone: 0421 321 743                  Receipt: 7942").align(Alignment.LEFT);
+                            printPayload.append("Phone: 0421 321 743          Receipt: 7942").align(Alignment.LEFT);
 
-                            printPayload.append("___________________________________________________").align(Alignment.CENTER);
+                            printPayload.append("__________________________").align(Alignment.CENTER);
 
                             SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
                             Date date = new Date(System.currentTimeMillis());
                             printPayload.append(String.format("Date: %s                                         Time: %s", dateFormatter.format(date), "11:30")).align(Alignment.LEFT);
 
-                            printPayload.append("Albert 5 Served By: Thomas - 3244").align(Alignment.LEFT);
+                            printPayload.append("Albert 5, Served By: Tom - 3244").align(Alignment.LEFT);
 
-                            printPayload.append("___________________________________________________").align(Alignment.CENTER);
+                            printPayload.append("__________________________").align(Alignment.CENTER);
 
                             printPayload.append("$").align(Alignment.RIGHT);
 
