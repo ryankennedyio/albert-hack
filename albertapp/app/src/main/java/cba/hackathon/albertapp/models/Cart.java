@@ -92,4 +92,16 @@ public class Cart {
         return mCartList.get(product);
     }
 
+    public float getProductQuantityPrice(Product product) {
+        return product.price * mCartList.get(product);
+    }
+
+    public int getAmountOfProducts() {
+        int total = 0;
+        for (Product p : mCartList.keySet()) {
+            total += mCartList.get(p);
+        }
+        return total;
+    }
+
 }
