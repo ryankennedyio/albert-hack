@@ -1,18 +1,32 @@
 package cba.hackathon.albertapp.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Order {
 
-    ArrayList<Product> lineItems;
+    @SerializedName("line_items")
+    ArrayList<LineItem> lineItems;
+
+    public Order() {
+        lineItems = new ArrayList<>();
+    }
+
+    public static class LineItem {
+        @SerializedName("product_id")
+        public int productId;
+        @SerializedName("quantity")
+        public int quantity;
+    }
 
     public class PaymentDetails {
         public String methodId;
         public String methodTitle;
         public boolean paid;
     }
-}
 
-/** CREATING AN ORDER
- * http://woothemes.github.io/woocommerce-rest-api-docs/#create-an-order
- */
+    public void addLineItem(LineItem item){
+        lineItems.add(item);
+    }
+}

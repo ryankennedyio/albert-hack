@@ -83,4 +83,9 @@ public class Cart {
         }
         return returnList;
     }
+
+    public LinkedHashMap<Product, Integer> getCartList(){
+        return mCartList;
+    }
+
 }

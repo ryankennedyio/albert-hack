@@ -18,13 +18,17 @@ import com.aevi.payment.TransactionResult;
 
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.LinkedHashMap;
 
 import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
 import cba.hackathon.albertapp.api.RestService;
 import cba.hackathon.albertapp.models.Cart;
 import cba.hackathon.albertapp.models.Order;
+import cba.hackathon.albertapp.models.Product;
 import cba.hackathon.albertapp.models.ProductAdapter;
+import cba.hackathon.albertapp.models.ProductList;
+import cba.hackathon.albertapp.models.Wrapper;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -130,11 +134,23 @@ public class ConfirmActivity extends BaseActivity {
         //TODO not a real order...
         Order order = new Order();
 
-        final Context context = this;
+        LinkedHashMap<Product, Integer> productList = mCart.getCartList();
+        for ( Product product : productList.keySet() ) {
+            Order.LineItem lineItem = new Order.LineItem();
+
+            lineItem.productId = product.id;
+            lineItem.quantity = productList.get(product);
+
+            order.addLineItem(lineItem);
+        }
+
+        Wrapper wrapper = new Wrapper();
+        wrapper.order = order;
 
         /* If the transaction was approved, make a POST request on the order to WooCommerce */
+        final Context context = this;
         if (PAYMENT_APPROVED.equals(result.getTransactionStatus().name())) {
-            mApi.createOrder(order, new Callback<Order>() {
+            mApi.createOrder(wrapper, new Callback<Order>() {
                 @Override
                 public void success(Order order, Response response) {
                     Toast
