@@ -2,6 +2,8 @@ package cba.hackathon.albertapp.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,12 +15,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aevi.helpers.services.AeviServiceConnectionCallback;
 import com.aevi.payment.PaymentRequest;
 import com.aevi.payment.TransactionResult;
+import com.aevi.printing.PrintService;
+import com.aevi.printing.PrintServiceProvider;
+import com.aevi.printing.model.Alignment;
+import com.aevi.printing.model.PrintPayload;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Currency;
+import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
 import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
@@ -81,13 +91,11 @@ public class ConfirmActivity extends BaseActivity {
     @Override
     protected void setListeners() {
         super.setListeners();
+
         mEmptyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCart.wipeItems();
-                mAdapter = new ProductAdapter(view.getContext(), mCart.getProductList(),false);
-                mCartItems.setAdapter(mAdapter);
-                mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
+                wipeCart();
             }
         });
 
@@ -118,6 +126,13 @@ public class ConfirmActivity extends BaseActivity {
                 ConfirmActivity.this.overridePendingTransition(R.anim.push_up_in, R.anim.no_animation);
             }
         });
+    }
+
+    private void wipeCart() {
+        mCart.wipeItems();
+        mAdapter = new ProductAdapter(this, mCart.getProductList(),false);
+        mCartItems.setAdapter(mAdapter);
+        mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
     }
 
     @Override
@@ -157,6 +172,49 @@ public class ConfirmActivity extends BaseActivity {
                     Toast
                             .makeText(context, "Order Confirmation Successful", Toast.LENGTH_SHORT)
                             .show();
+
+                    wipeCart();
+
+                    PrintServiceProvider serviceProvider = new PrintServiceProvider(ConfirmActivity.this);
+
+                    serviceProvider.connect(new AeviServiceConnectionCallback<PrintService>() {
+                        @Override
+                        public void onConnect(PrintService service) {
+
+                            if (service == null) {
+                                Log.v("print", "Print service failed to open");
+                                return;
+                            }
+
+                            PrintService printService = service;
+
+                            PrintPayload printPayload = new PrintPayload();
+
+                            printPayload.append("Cheap As Chips").align(Alignment.CENTER);
+                            printPayload.append("Tax Invoice ABN: 45 024 189 799").align(Alignment.CENTER);
+                            printPayload.appendEmptyLine();
+
+                            // Add pic
+                            BitmapFactory.Options options = printService.getDefaultPrinterSettings().asBitmapFactoryOptions();
+                            Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.receipt_logo, options);
+                            printPayload.append(image);
+
+                            printPayload.append("Southern Cross Arcade                 Pop-up: 0438").align(Alignment.LEFT);
+                            printPayload.append("Adelaide Showground, 39 Goodwood Rd, Wayville SA 5034").align(Alignment.LEFT);
+                            printPayload.append("Phone: 0421 321 743                  Receipt: 7942").align(Alignment.LEFT);
+
+                            printPayload.append("___________________________________________________").align(Alignment.CENTER);
+
+                            SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+                            Date date = new Date(System.currentTimeMillis());
+                            printPayload.append(String.format("The time is %s", dateFormatter.format(date)));
+
+                            printPayload.append("___________________________________________________").align(Alignment.CENTER);
+
+                            // finally print the payload
+                            printService.print(printPayload);
+                        }
+                    });
                 }
 
                 @Override
