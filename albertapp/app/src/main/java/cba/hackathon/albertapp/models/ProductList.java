@@ -27,11 +27,23 @@ public class ProductList {
     }
 
     public Product getProductByName(String name) {
-        return mNameList.get(name);
+//        return mNameList.get(name);
+        for (Product p :mProductList) {
+            if (p.title == name) {
+                return p;
+            }
+        }
+        return null;
     }
 
     public Product getProductBySKU(String sku) {
-        return mSKUList.get(sku);
+//        return mSKUList.get(sku);
+        for (Product p :mProductList) {
+            if (p.sku == sku) {
+                return p;
+            }
+        }
+        return null;
     }
 
     public String[] getProductsNamesList() {
