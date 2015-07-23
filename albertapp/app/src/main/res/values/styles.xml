@@ -9,4 +9,8 @@
         <item name="android:background">@color/blue_500</item>
     </style>
 
+    <style name="SearchBtn">
+        <item name="android:background">@null</item>
+    </style>
+
 </resources>
