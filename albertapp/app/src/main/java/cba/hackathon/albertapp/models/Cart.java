@@ -1,5 +1,6 @@
 package cba.hackathon.albertapp.models;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 /**
@@ -68,10 +69,18 @@ public class Cart {
     public String[] getProductsNamesList() {
         String[] namesList = new String[mCartList.size()];
         int i = 0;
-        for (Product p : mCartList.keySet()) {
-            namesList[i] = p.title;
+        for (Product product : mCartList.keySet()) {
+            namesList[i] = product.title;
             ++i;
         }
         return namesList;
+    }
+
+    public ProductList getProductList(){
+        ProductList returnList = new ProductList();
+        for ( Product product : mCartList.keySet()) {
+            returnList.addProduct(product);
+        }
+        return returnList;
     }
 }

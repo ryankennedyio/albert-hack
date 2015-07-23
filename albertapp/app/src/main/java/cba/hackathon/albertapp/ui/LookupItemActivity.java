@@ -5,13 +5,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
+import cba.hackathon.albertapp.models.Product;
 import cba.hackathon.albertapp.models.ProductAdapter;
 
 public class LookupItemActivity extends BaseActivity {
@@ -35,10 +38,22 @@ public class LookupItemActivity extends BaseActivity {
         setListeners();
 
         mApp = ((App) getApplicationContext());
-        // Adding items to listview
-
         mAdapter = new ProductAdapter(this, mApp.getProductList());
         mStockItemsList.setAdapter(mAdapter);
+
+        mStockItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Product product = (Product) mStockItemsList.getAdapter().getItem(position);
+                mApp.getCart().addProduct(product);
+                Toast.makeText(
+                        view.getContext(),
+                        "Added " + product.title + " to cart",
+                        Toast.LENGTH_SHORT
+                ).show();
+                finish();
+            }
+        });
     }
 
     @Override
@@ -83,26 +98,6 @@ public class LookupItemActivity extends BaseActivity {
 
             }
         });
-    }
-
-    /**
-     * Add to cart when product view clicked
-     *   Specifically when name textview clicked
-     */
-    public void onClickProductName(View view) {
-        TextView textView = ((TextView) view);
-        mApp.getCart().addProduct(mApp.getProductList().getProductByName(textView.getText().toString()));
-        finish();
-    }
-
-    /**
-     * Add to cart when product view clicked
-     *   Specifically when sku textview clicked
-     */
-    public void onClickProductSKU(View view) {
-        TextView textView = ((TextView) view);
-        mApp.getCart().addProduct(mApp.getProductList().getProductBySKU(textView.getText().toString()));
-        finish();
     }
 
     @Override
