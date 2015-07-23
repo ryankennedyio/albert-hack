@@ -19,8 +19,8 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MainActivity extends BaseActivity implements ZXingScannerView.ResultHandler {
 
-    private Button mLookupBtn;
-    private Button mDoneBtn;
+    private LinearLayout mLookupBtn;
+    private LinearLayout mDoneBtn;
     private TextView mTotalCost;
     private TextView mUsername;
 
@@ -45,8 +45,8 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         super.initResources();
         mApp = ((App) getApplicationContext());
 
-        mLookupBtn = (Button) findViewById(R.id.btn_lookup_item);
-        mDoneBtn = (Button) findViewById(R.id.btn_done);
+        mLookupBtn = (LinearLayout) findViewById(R.id.btn_lookup_item);
+        mDoneBtn = (LinearLayout) findViewById(R.id.btn_done);
 
         mLinearLayout = (LinearLayout) findViewById(R.id.scanner_view);
         mScannerView = new ZXingScannerView(this);

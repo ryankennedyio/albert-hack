@@ -70,22 +70,70 @@
             android:layout_height="0dp"
             android:layout_weight="0.3"
             android:orientation="horizontal">
-            <Button
+            <LinearLayout
+                style="@style/Button"
                 android:id="@+id/btn_lookup_item"
                 android:layout_width="0dp"
+                android:layout_height="fill_parent"
                 android:layout_weight="0.5"
-                android:layout_height="match_parent"
-                android:text="@string/lookup_item"
-                android:layout_alignParentLeft="true"
-                />
-            <Button
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:animateLayoutChanges="true"
+                >
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:src="@mipmap/ic_search_white_48dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:lines="1"
+                    android:gravity="center_vertical"
+                    android:textSize="35dp"
+                    android:textColor="@color/white"
+                    android:text="lookup item"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Button"
                 android:id="@+id/btn_done"
                 android:layout_width="0dp"
+                android:layout_height="fill_parent"
                 android:layout_weight="0.5"
-                android:layout_height="match_parent"
-                android:text="@string/done"
-                android:layout_alignParentRight="true"
-                />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:animateLayoutChanges="true"
+                >
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:src="@mipmap/ic_shopping_cart_white_48dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:lines="1"
+                    android:gravity="center_vertical"
+                    android:textSize="35dp"
+                    android:textColor="@color/white"
+                    android:text="view cart"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 

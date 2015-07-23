@@ -1,3 +1,5 @@
 .DS_Store
 albertapp/.idea/misc.xml
 albertapp/app/app.iml
+
+albertapp/.idea/modules.xml
