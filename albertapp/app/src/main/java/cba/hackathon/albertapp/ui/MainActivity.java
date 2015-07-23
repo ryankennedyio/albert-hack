@@ -106,6 +106,5 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
 
         mCart.addProduct(product);
         // TODO Scan complete TOAST
-        x`
     }
 }
