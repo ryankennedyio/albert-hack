@@ -7,6 +7,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import cba.hackathon.albertapp.api.RestService;
+import cba.hackathon.albertapp.api.ServiceGenerator;
 import cba.hackathon.albertapp.models.Cart;
 import cba.hackathon.albertapp.models.Product;
 import cba.hackathon.albertapp.models.ProductList;
@@ -20,18 +21,19 @@ public class App extends Application {
     private Cart mCart;
     private ProductList mProductList;
     private  RestService mApi;
-    public static String ENDPOINT = "http://www.example.com";
+    public static String ENDPOINT = "https://reconsale.com";
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        //Instantiate a singleton instance of the API
-        RestAdapter builder = new RestAdapter.Builder()
-                .setEndpoint(ENDPOINT)
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
-        mApi = builder.create(RestService.class);
+        mApi = ServiceGenerator.createService(
+                RestService.class,
+                ENDPOINT,
+                "ck_a769c8f2ea7b00a596b5913a97e8407d",
+                "cs_d7c74460a1519935d5804cf77d4ccb91"
+        );
+
 
         // Fetch the products from the server and populate in the callback
         final Context context = this;

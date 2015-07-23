@@ -37,13 +37,12 @@ public class LookupItemActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
         initResources();
         setListeners();
 
         mApp = ((App) getApplicationContext());
         // Adding items to listview
-<<<<<<< HEAD
+
         mAdapter = new ProductAdapter(this, mApp.getProductList());
         mStockItemsList.setAdapter(mAdapter);
     }
@@ -64,10 +63,7 @@ public class LookupItemActivity extends BaseActivity {
 
             }
         });
-=======
-//        mAdapter = new ArrayAdapter<String>(this, R.layout.search_item, R.id.product_name, mApp.getProductList());
-//        mStockItemsList.setAdapter(mAdapter);
->>>>>>> nothing commit to get it working
+
 
         /**
          * Enabling Search Filter
