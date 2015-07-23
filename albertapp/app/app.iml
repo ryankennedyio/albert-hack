@@ -12,12 +12,10 @@
         <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
         <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
         <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <option name="SOURCE_GEN_TASK_NAME" value="generateDebugSources" />
         <option name="ASSEMBLE_TEST_TASK_NAME" value="assembleDebugAndroidTest" />
         <option name="COMPILE_JAVA_TEST_TASK_NAME" value="compileDebugAndroidTestSources" />
-        <afterSyncTasks>
-          <task>generateDebugAndroidTestSources</task>
-          <task>generateDebugSources</task>
-        </afterSyncTasks>
+        <option name="TEST_SOURCE_GEN_TASK_NAME" value="generateDebugAndroidTestSources" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
@@ -91,15 +89,20 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 22 Platform (3)" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="moshi-0.9.0" level="project" />
-    <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
+    <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
+    <orderEntry type="library" exported="" name="core-3.2.0" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-2.4.0" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="core-1.8" level="project" />
     <orderEntry type="library" exported="" name="retrofit-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.4.0" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="zxing-1.8" level="project" />
     <orderEntry type="module" module-name="aevi-api-2.3.0" exported="" />
     <orderEntry type="library" exported="" name="aevi-api-2.3.0-unspecified" level="project" />
   </component>
