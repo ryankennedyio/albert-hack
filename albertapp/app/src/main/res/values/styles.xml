@@ -40,4 +40,19 @@
         <item name="android:padding">10dp</item>
     </style>
 
+    <style name="LoginField">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColorHint">#a6b3b9</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="LoginBtn">
+        <item name="android:textSize">40sp</item>
+        <item name="android:layout_margin">50dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/edit_text</item>
+    </style>
+
 </resources>
