@@ -83,24 +83,23 @@ public class ProductAdapter extends BaseAdapter implements Filterable {
         deleteProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Log.d("test","click listener position: "+position);
+                Log.d("test", "click listener position: " + position);
             }
         });
 
 
         productName.setText(product.title);
         productSKU.setText(product.sku);
-        productPrice.setText(String.format("%.2f", product.price));
-        productPriceBig.setText(String.format("%.2f", product.price));
-
+        String str = String.format("$%.2f", product.price);
+        productPrice.setText(str);
+        productPriceBig.setText(str);
+        ViewGroup layout = (ViewGroup) deleteProduct.getParent();
         if( lookUpActivity ){
-            ViewGroup layout = (ViewGroup) deleteProduct.getParent();
             if(layout!=null) {
                 layout.removeView(deleteProduct);
                 //layout.removeView(productQuantity);
             }
         }else{
-            ViewGroup layout = (ViewGroup) deleteProduct.getParent();
             if(layout!=null) {
                 layout.removeView(productPriceBig);
             }
