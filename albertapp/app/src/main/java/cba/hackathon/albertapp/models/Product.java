@@ -15,6 +15,10 @@ public class Product {
     public int stockQuantity;
     public boolean inStock;
 
+    public String getImagePath(){
+        return this.images.get(0).src;
+    }
+
     private class Image {
         public int id;
         public String src;

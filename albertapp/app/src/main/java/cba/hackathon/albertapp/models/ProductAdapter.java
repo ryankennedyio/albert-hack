@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -57,12 +60,21 @@ public class ProductAdapter extends BaseAdapter implements Filterable {
             view = convertView;
         }
 
+        //Load the image into thumbnail
+        ImageView thumbnail = (ImageView) view.findViewById(R.id.product_thumbnail);
+        Picasso
+                .with(view.getContext())
+                .load(product.getImagePath())
+                .into(thumbnail);
+
         // Set contact name and number
         TextView productName = (TextView) view.findViewById(R.id.product_name);
         TextView productSKU = (TextView) view.findViewById(R.id.product_sku);
+        TextView productPrice = (TextView) view.findViewById(R.id.product_price);
 
         productName.setText(product.title);
         productSKU.setText(product.sku);
+        productPrice.setText(String.valueOf(product.price));
 
         return view;
     }
