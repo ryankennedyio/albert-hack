@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="$0.00"
-                android:textColor="@color/light_blue"
+                android:textColor="@color/blue_500"
                 android:textSize="20dp"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
