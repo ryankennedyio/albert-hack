@@ -32,13 +32,14 @@ public class LookupItemActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lookup_item);
         addDrawerItems();
+        getSupportActionBar().setTitle("Confirm Order");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         initResources();
         setListeners();
 
         mApp = ((App) getApplicationContext());
-        mAdapter = new ProductAdapter(this, mApp.getProductList(),true);
+        mAdapter = new ProductAdapter(this, mApp.getProductList(), true);
         mStockItemsList.setAdapter(mAdapter);
 
         mStockItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
