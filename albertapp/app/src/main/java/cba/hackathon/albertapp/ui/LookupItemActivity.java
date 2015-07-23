@@ -21,7 +21,6 @@ import cba.hackathon.albertapp.models.ProductAdapter;
 public class LookupItemActivity extends BaseActivity {
 
     private EditText mSearchInput;
-    private ImageButton mSearchBtn;
     private ListView mStockItemsList;
 
     private ProductAdapter mAdapter;
@@ -62,20 +61,12 @@ public class LookupItemActivity extends BaseActivity {
         super.initResources();
         mSearchInput = (EditText) findViewById(R.id.edit_search);
         mSearchInput.setSelected(false);
-        mSearchBtn = (ImageButton) findViewById(R.id.btn_search);
         mStockItemsList = (ListView) findViewById(R.id.stock_items);
     }
 
     @Override
     protected void setListeners() {
         super.setListeners();
-        mSearchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
 
         /**
          * Enabling Search Filter
