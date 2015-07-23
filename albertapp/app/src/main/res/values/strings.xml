@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">albertapp</string>
-    <string name="hello_world">Hello Albert!</string>
+    <string name="app_name">reconsale</string>
     <string name="action_settings">Settings</string>
     <string name="confirm">Confirm</string>
     <string name="lookup_item">Lookup Item</string>
