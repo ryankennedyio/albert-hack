@@ -24,6 +24,7 @@ import cba.hackathon.albertapp.R;
 import cba.hackathon.albertapp.api.RestService;
 import cba.hackathon.albertapp.models.Cart;
 import cba.hackathon.albertapp.models.Order;
+import cba.hackathon.albertapp.models.ProductAdapter;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -41,7 +42,7 @@ public class ConfirmActivity extends BaseActivity {
     private RestService mApi;
     private Cart mCart;
 
-    private ArrayAdapter<String> mAdapter;
+    private ProductAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,8 @@ public class ConfirmActivity extends BaseActivity {
         mTotalCost = (TextView) findViewById(R.id.text_total_cost);
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
 
-        mAdapter = new ArrayAdapter<String>(this, R.layout.search_item, R.id.product_name, mCart.getProductsNamesList());
+        mAdapter = new ProductAdapter(this, mCart.getProductList());
+
         mCartItems.setAdapter(mAdapter);
     }
 
@@ -78,7 +80,7 @@ public class ConfirmActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 mCart.wipeItems();
-                mAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.search_item, R.id.product_name, mCart.getProductsNamesList());
+                mAdapter = new ProductAdapter(view.getContext(), mCart.getProductList());
                 mCartItems.setAdapter(mAdapter);
                 mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
             }
