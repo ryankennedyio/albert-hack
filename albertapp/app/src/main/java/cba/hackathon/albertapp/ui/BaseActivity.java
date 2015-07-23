@@ -46,13 +46,11 @@ abstract public class BaseActivity extends AppCompatActivity{
         mDrawerList.setAdapter(mAdapter);
     }
 
-    protected void initResources(){
+    protected void initResources() {
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
         mApp = ((App) getApplicationContext());
-
-        checkUserLogin();
     }
 
     void setListeners(){

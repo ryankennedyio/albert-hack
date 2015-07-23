@@ -24,7 +24,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private App mApp;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setListeners();
     }
 
-    protected void initResources() {
+    private void initResources() {
         mLoginBtn = (Button) findViewById(R.id.btn_login);
         mEditPin = (EditText) findViewById(R.id.edit_pin);
         mEditPin.setRawInputType(Configuration.KEYBOARD_QWERTY);
@@ -45,13 +46,13 @@ public class LoginActivity extends AppCompatActivity {
         mApp = ((App) getApplicationContext());
     }
 
-    protected void setListeners() {
+    private void setListeners() {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String input = mEditPin.getText().toString();
                 if (input != null && input.length() != 0) {
-                    mApp.setUser(mEditPin.getText().toString());
+                    mApp.setUser(input);
                     Toast.makeText(
                             view.getContext(),
                             "Logged in as: " + mApp.getUser(),
