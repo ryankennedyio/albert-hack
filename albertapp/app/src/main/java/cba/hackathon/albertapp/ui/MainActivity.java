@@ -40,6 +40,8 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addDrawerItems();
+        getSupportActionBar().setTitle("Scan Item");
+        getSupportActionBar().setCustomView(R.layout.actionbar);
 
         initResources();
         setListeners();
