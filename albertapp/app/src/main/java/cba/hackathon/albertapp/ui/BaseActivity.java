@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aevi.payment.PaymentRequest;
@@ -30,13 +31,16 @@ abstract public class BaseActivity extends AppCompatActivity{
     protected ArrayAdapter<String> mAdapter;
     protected DrawerLayout mDrawer;
     protected InputMethodManager imm;
+    protected TextView mTitle;
 
     private App mApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        mTitle = (TextView) findViewById(R.id.actionbar_title);
     }
 
     protected void addDrawerItems(){

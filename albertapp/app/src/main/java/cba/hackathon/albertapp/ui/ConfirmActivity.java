@@ -51,11 +51,11 @@ public class ConfirmActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Confirm Order");
         setContentView(R.layout.activity_confirm);
         addDrawerItems();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        mTitle.setText("Confirm Order");
 
         initResources();
         setListeners();

@@ -16,6 +16,7 @@
 
     <style name="Navbar">
         <item name="android:background">@color/blue_500</item>
+        <item name="android:gravity">center</item>
 
     </style>
 
