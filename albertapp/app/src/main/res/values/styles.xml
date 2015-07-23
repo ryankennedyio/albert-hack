@@ -13,4 +13,12 @@
         <item name="android:background">@null</item>
     </style>
 
+    <style name="SearchField">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@null</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
 </resources>
