@@ -11,7 +11,9 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
 
 
@@ -19,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button mLoginBtn;
     private EditText mEditPin;
+
+    private App mApp;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,18 +41,35 @@ public class LoginActivity extends AppCompatActivity {
         mEditPin.requestFocusFromTouch();
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(mEditPin, InputMethodManager.SHOW_IMPLICIT);
+
+        mApp = ((App) getApplicationContext());
     }
 
     protected void setListeners() {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                exitActivity();
+                String input = mEditPin.getText().toString();
+                if (input != null && input.length() != 0) {
+                    mApp.setUser(mEditPin.getText().toString());
+                    Toast.makeText(
+                            view.getContext(),
+                            "Logged in as: " + mApp.getUser(),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    exitActivity();
+                } else {
+                    Toast.makeText(
+                            view.getContext(),
+                            "Login Invalid/Missing",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
             }
         });
     }
 
-    private void exitActivity(){
+    private void exitActivity() {
         finish();
         LoginActivity.this.overridePendingTransition(R.anim.fade_in, R.anim.no_animation);
     }
