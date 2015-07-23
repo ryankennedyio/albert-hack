@@ -57,6 +57,7 @@ public class ConfirmActivity extends BaseActivity {
 
     @Override
     protected void initResources() {
+        super.initResources();
         mApi = ((App) getApplicationContext()).getApi();
         mCart = ((App) getApplicationContext()).getCart();
 
@@ -72,7 +73,7 @@ public class ConfirmActivity extends BaseActivity {
 
     @Override
     protected void setListeners() {
-
+        super.setListeners();
         mEmptyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,7 +114,7 @@ public class ConfirmActivity extends BaseActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
     }

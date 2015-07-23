@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -38,6 +39,7 @@ public class LookupItemActivity extends BaseActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
 
+
         initResources();
         setListeners();
 
@@ -49,6 +51,7 @@ public class LookupItemActivity extends BaseActivity {
 
     @Override
     protected void initResources() {
+        super.initResources();
         mSearchInput = (EditText) findViewById(R.id.edit_search);
         mSearchInput.setSelected(false);
         mSearchBtn = (Button) findViewById(R.id.btn_search);
@@ -57,6 +60,7 @@ public class LookupItemActivity extends BaseActivity {
 
     @Override
     protected void setListeners() {
+        super.setListeners();
         mSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,5 +111,11 @@ public class LookupItemActivity extends BaseActivity {
         TextView textView = ((TextView) view);
         mApp.getCart().addProduct(mApp.getProductList().getProductBySKU(textView.getText().toString()));
         finish();
+    }
+
+    @Override
+    public void onResume(){
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        super.onResume();
     }
 }
