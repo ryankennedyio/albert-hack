@@ -50,5 +50,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void exitActivity(){
         finish();
+        LoginActivity.this.overridePendingTransition(R.anim.fade_in, R.anim.no_animation);
     }
 }

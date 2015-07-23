@@ -49,6 +49,8 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
 
     @Override
     protected void initResources() {
+        super.initResources();
+        mCart = ((App) getApplicationContext()).getCart();
         mApp = ((App) getApplicationContext());
         mCart = mApp.getCart();
 
@@ -89,7 +91,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
     }
