@@ -38,7 +38,7 @@ public class LookupItemActivity extends BaseActivity {
         setListeners();
 
         mApp = ((App) getApplicationContext());
-        mAdapter = new ProductAdapter(this, mApp.getProductList());
+        mAdapter = new ProductAdapter(this, mApp.getProductList(),true);
         mStockItemsList.setAdapter(mAdapter);
 
         mStockItemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
