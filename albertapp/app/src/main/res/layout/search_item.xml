@@ -4,7 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <!-- Single ListItem -->
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
 
     <!-- Product Name -->
     <TextView android:id="@+id/product_name"
