@@ -22,6 +22,7 @@ public class Cart {
         } else {
             mCartList.put(product, mappedProduct+1);
         }
+        mTotalPrice += product.price;
     }
 
     public void removeProduct(Product product) {
@@ -32,11 +33,14 @@ public class Cart {
 
         if (mappedProduct == 1) {
             mCartList.remove(product);
+            mTotalPrice -= product.price;
+
             return;
         }
 
         if (mappedProduct != null) {
             mCartList.put(product, mappedProduct - 1);
+            mTotalPrice -= product.price;
         }
     }
 
