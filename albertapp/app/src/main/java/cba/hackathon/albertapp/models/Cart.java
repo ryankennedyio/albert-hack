@@ -52,6 +52,7 @@ public class Cart {
 
     public void wipeItems() {
         mItemList.clear();
+        mTotalPrice = 0.0f;
     }
 
     public ArrayList<Item> getProductList() {

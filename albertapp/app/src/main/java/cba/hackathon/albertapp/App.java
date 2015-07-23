@@ -33,7 +33,7 @@ public class App extends Application {
         Product mockProduct1 = new Product();
         mockProduct1.title = "Ravi";
         mockProduct1.sku = "10323";
-        mockProduct1.price = 0.01f; //cheap!
+        mockProduct1.price = 0.01f; //cheap! As chips
         mockProduct1.stockQuantity = 1;
         Product mockProduct2 = new Product();
         mockProduct2.title = "Ryan";

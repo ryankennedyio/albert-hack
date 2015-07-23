@@ -66,7 +66,6 @@ public class ConfirmActivity extends BaseActivity {
         mTotalCost = (TextView) findViewById(R.id.text_total_cost);
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
 
-        //TODO override onRefresh
         mAdapter = new ArrayAdapter<String>(this, R.layout.search_item, R.id.product_name, mCart.getProductsNamesList());
         mCartItems.setAdapter(mAdapter);
     }
@@ -77,7 +76,10 @@ public class ConfirmActivity extends BaseActivity {
         mEmptyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mCart.wipeItems();
+                mAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.search_item, R.id.product_name, mCart.getProductsNamesList());
+                mCartItems.setAdapter(mAdapter);
+                mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
             }
         });
 
