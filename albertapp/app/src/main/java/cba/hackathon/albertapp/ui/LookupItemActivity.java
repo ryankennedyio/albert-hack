@@ -32,9 +32,9 @@ public class LookupItemActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lookup_item);
         addDrawerItems();
-        getSupportActionBar().setTitle("Confirm Order");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        mTitle.setText("Lookup item");
         initResources();
         setListeners();
 

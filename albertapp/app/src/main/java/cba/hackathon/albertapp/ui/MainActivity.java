@@ -22,6 +22,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     private Button mLookupBtn;
     private Button mDoneBtn;
     private TextView mTotalCost;
+    private TextView mUsername;
 
     private App mApp;
 
@@ -33,12 +34,10 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addDrawerItems();
-        getSupportActionBar().setTitle("Scan Item");
-        getSupportActionBar().setCustomView(R.layout.actionbar);
+        mTitle.setText("Scan Item");
 
         initResources();
         setListeners();
-
     }
 
     @Override
@@ -57,6 +56,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
         insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
         mTotalCost = (TextView) findViewById(R.id.text_total_cost);
+        mUsername = (TextView) findViewById(R.id.text_username);
         mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
     }
 
@@ -92,6 +92,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         super.onResume();
         mScannerView.startCamera();
         mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
+        mUsername.setText(mApp.getUser());
     }
 
     @Override
