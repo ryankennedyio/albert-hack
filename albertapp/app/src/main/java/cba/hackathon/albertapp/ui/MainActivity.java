@@ -56,8 +56,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
 
         mLookupBtn = (Button) findViewById(R.id.btn_lookup_item);
         mDoneBtn = (Button) findViewById(R.id.btn_done);
-        mTotalCost = (TextView) findViewById(R.id.text_total_cosi);
-        mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
+
 
         mLinearLayout = (LinearLayout) findViewById(R.id.scanner_view);
         mScannerView = new ZXingScannerView(this);
@@ -65,6 +64,8 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         mScannerView.setResultHandler(this);
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
         insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+        mTotalCost = (TextView) findViewById(R.id.text_total_cost);
+        mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
     }
 
     @Override
