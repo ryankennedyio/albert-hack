@@ -37,12 +37,10 @@ public class App extends Application {
 
         // Fetch the products from the server and populate in the callback
         final Context context = this;
-        mApi.getProducts(new Callback<List<Product>>() {
+        mApi.getProducts(new Callback<ProductList>() {
             @Override
-            public void success(List<Product> products, Response response) {
-                for ( Product product : products ) {
-                    mProductList.addProduct(product);
-                }
+            public void success(ProductList products, Response response) {
+                mProductList = products;
             }
 
             @Override

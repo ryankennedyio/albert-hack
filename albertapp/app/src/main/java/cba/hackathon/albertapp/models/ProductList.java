@@ -1,5 +1,7 @@
 package cba.hackathon.albertapp.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,6 +11,7 @@ import java.util.HashMap;
 public class ProductList {
     private HashMap<String, Product> mNameList;
     private HashMap<String, Product>  mSKUList;
+    @SerializedName("products")
     private ArrayList<Product> mProductList;
 
     public ProductList() {
