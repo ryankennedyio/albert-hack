@@ -51,15 +51,18 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         mDoneBtn = (LinearLayout) findViewById(R.id.btn_done);
 
         mLinearLayout = (LinearLayout) findViewById(R.id.scanner_view);
+        mTotalCost = (TextView) findViewById(R.id.text_total_cost);
+        mUsername = (TextView) findViewById(R.id.text_username);
+        mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
+    }
+
+    private void initScanner() {
         mScannerView = new ZXingScannerView(this);
         mScannerView.startCamera();
 
         mScannerView.setResultHandler(this);
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
         insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
-        mTotalCost = (TextView) findViewById(R.id.text_total_cost);
-        mUsername = (TextView) findViewById(R.id.text_username);
-        mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
     }
 
     @Override
@@ -128,20 +131,24 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     @Override
     public void onResume() {
         super.onResume();
-        mScannerView.startCamera();
+
         mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
         mUsername.setText(mApp.getUser());
+
+        initScanner();
     }
 
     @Override
     public void onPause() {
-        mScannerView.stopCamera();
         super.onPause();
+
+        mScannerView.stopCamera();
+        mScannerView = null;
     }
 
     @Override
     public void handleResult(Result result) {
-        mScannerView.startCamera();
+        initScanner();
 
         Product product = mApp.getProductList().getProductBySKU(result.getText());
         if (product == null) {
