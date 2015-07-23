@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
 
 /**
@@ -29,12 +30,14 @@ public class ProductAdapter extends BaseAdapter implements Filterable {
     private ArrayList<Product> mProductArray;
     private ProductsFilter mProductsFilter;
     private boolean lookUpActivity;
+    private Cart mCart;
 
     public ProductAdapter(Context context, ProductList productList, boolean lookUp) {
         lookUpActivity=lookUp;
         mContext = context;
         mProductList = productList;
         mProductArray = productList.getProducts();
+        mCart = ((App)context.getApplicationContext()).getCart();
     }
 
     @Override
@@ -56,7 +59,7 @@ public class ProductAdapter extends BaseAdapter implements Filterable {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view;
 
-        Product product = mProductArray.get(position);
+        final Product product = mProductArray.get(position);
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -80,29 +83,38 @@ public class ProductAdapter extends BaseAdapter implements Filterable {
         TextView productQuantity = (TextView) view.findViewById(R.id.product_qty);
         Button deleteProduct = (Button) view.findViewById(R.id.btn_delete_item);
 
-        deleteProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Log.d("test", "click listener position: " + position);
-            }
-        });
-
-
         productName.setText(product.title);
         productSKU.setText(product.sku);
         String str = String.format("$%.2f", product.price);
         productPrice.setText(str);
         productPriceBig.setText(str);
+
+        //hide buttons
         ViewGroup layout = (ViewGroup) deleteProduct.getParent();
         if( lookUpActivity ){
             if(layout!=null) {
                 deleteProduct.setVisibility(View.GONE);
+                productPrice.setVisibility(View.GONE);
+                productQuantity.setVisibility(View.GONE);
             }
         }else{
             if(layout!=null) {
+                productQuantity.setText("x"+mCart.getProductCount(product));
                 productPriceBig.setVisibility(View.GONE);
+                productSKU.setVisibility(View.GONE);
             }
         }
+
+        //delete product listener
+        deleteProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                mCart.removeProduct(product);
+                mProductList = mCart.getProductList();
+                mProductArray = mProductList.getProducts();
+                notifyDataSetChanged();
+            }
+        });
 
         return view;
     }

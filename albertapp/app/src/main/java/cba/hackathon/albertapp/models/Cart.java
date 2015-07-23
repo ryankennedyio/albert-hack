@@ -88,4 +88,8 @@ public class Cart {
         return mCartList;
     }
 
+    public int getProductCount(Product product){
+        return mCartList.get(product);
+    }
+
 }
