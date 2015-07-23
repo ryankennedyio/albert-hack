@@ -17,7 +17,11 @@
     <style name="Navbar">
         <item name="android:background">@color/blue_500</item>
         <item name="android:gravity">center</item>
+    </style>
 
+    <style name="LookupBar">
+        <item name="android:background">@color/blue_700</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="SearchBtn">

@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,7 +82,7 @@ public class ProductAdapter extends BaseAdapter implements Filterable {
         TextView productPrice = (TextView) view.findViewById(R.id.product_price);
         TextView productPriceBig = (TextView) view.findViewById(R.id.product_price_big);
         TextView productQuantity = (TextView) view.findViewById(R.id.product_qty);
-        Button deleteProduct = (Button) view.findViewById(R.id.btn_delete_item);
+        ImageButton deleteProduct = (ImageButton) view.findViewById(R.id.btn_delete_item);
 
         productName.setText(product.title);
         productSKU.setText(product.sku);
