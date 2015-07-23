@@ -207,9 +207,27 @@ public class ConfirmActivity extends BaseActivity {
 
                             SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
                             Date date = new Date(System.currentTimeMillis());
-                            printPayload.append(String.format("The time is %s", dateFormatter.format(date)));
+                            printPayload.append(String.format("Date: %s                                         Time: %s", dateFormatter.format(date), "11:30")).align(Alignment.LEFT);
+
+                            printPayload.append("Albert 5 Served By: Thomas - 3244").align(Alignment.LEFT);
 
                             printPayload.append("___________________________________________________").align(Alignment.CENTER);
+
+                            printPayload.append("$").align(Alignment.RIGHT);
+
+                            for (Product p : mCart.getProductList().getProducts()) {
+                                printPayload.append(p.title).align(Alignment.LEFT);
+                                printPayload.append("$" + String.format("%.2f", mCart.getProductQuantityPrice(p))).align(Alignment.RIGHT);
+                                printPayload.append("   Quantity:   " + Integer.toString(mCart.getProductCount(p)) +
+                                    " @ $" + String.format("%.2f", p.price)).align(Alignment.LEFT);
+                            }
+
+                            printPayload.appendEmptyLine();
+
+                            printPayload.append("Total for " + Integer.toString(mCart.getAmountOfProducts()) + " items" +
+                            "                      $" + String.format("%.2f", mCart.getTotalPrice())).align(Alignment.LEFT);
+                            printPayload.append("Gift Card                         0.00").align(Alignment.LEFT);
+                            printPayload.append("GST INCLUDED IN TOTAL                      $0.53").align(Alignment.LEFT);
 
                             // finally print the payload
                             printService.print(printPayload);
