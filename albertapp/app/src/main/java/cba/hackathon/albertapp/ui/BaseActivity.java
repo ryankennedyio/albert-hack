@@ -91,6 +91,7 @@ abstract public class BaseActivity extends AppCompatActivity{
     public void onResume(){
         super.onResume();
         mDrawer.closeDrawers();
-        //imm.hideSoftInputFromWindow(new View(this).getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(new View(this).getWindowToken(), 0);
+        Log.d("test","asdfasdsfd");
     }
 }

@@ -12,29 +12,29 @@
         android:padding="0dp"
         tools:context=".MainActivity">
 
-        <LinearLayout
-            android:id="@+id/scanner_view"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9"
-            android:background="@mipmap/example_scanner"
-            android:padding="0px"
-            android:orientation="vertical">
+            android:layout_weight="0.9">
             <LinearLayout
+                android:id="@+id/scanner_view"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"/>
+                android:layout_height="match_parent"
+                android:background="@mipmap/example_scanner"
+                android:padding="0px"
+                android:orientation="vertical">
+            </LinearLayout>
             <TextView
-                android:id="@+id/text_total_cosi"
+                android:id="@+id/text_total_cost"
                 android:textColor="#FFFFFF"
                 android:text="$0.0"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center_horizontal|right"
-                android:layout_weight="0.1"
-                android:paddingRight="50px"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:paddingBottom="50px"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"/>
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -55,7 +55,6 @@
                 android:layout_alignParentRight="true"
                 />
         </RelativeLayout>
-
     </LinearLayout>
 
     <ListView
