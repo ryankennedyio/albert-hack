@@ -21,6 +21,7 @@ import com.aevi.payment.TransactionResult;
 import java.math.BigDecimal;
 import java.util.Currency;
 
+import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
 
 abstract public class BaseActivity extends AppCompatActivity{
@@ -29,6 +30,8 @@ abstract public class BaseActivity extends AppCompatActivity{
     protected ArrayAdapter<String> mAdapter;
     protected DrawerLayout mDrawer;
     protected InputMethodManager imm;
+
+    private App mApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,10 @@ abstract public class BaseActivity extends AppCompatActivity{
     protected void initResources(){
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        mApp = ((App) getApplicationContext());
+
+        checkUserLogin();
     }
 
     void setListeners(){
@@ -54,6 +61,8 @@ abstract public class BaseActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
+                        mApp.setUser(null);
+
                         Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
                         startActivity(intent);
                         BaseActivity.this.overridePendingTransition(R.anim.fade_in, R.anim.no_animation);
@@ -90,8 +99,16 @@ abstract public class BaseActivity extends AppCompatActivity{
     @Override
     public void onResume(){
         super.onResume();
+        checkUserLogin();
         mDrawer.closeDrawers();
         imm.hideSoftInputFromWindow(new View(this).getWindowToken(), 0);
-        Log.d("test","asdfasdsfd");
+    }
+
+    private void checkUserLogin() {
+        if (mApp.getUser() == null) {
+            Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+
     }
 }

@@ -56,11 +56,6 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         super.initResources();
         mApp = ((App) getApplicationContext());
 
-        if (mApp.getUser() == null) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-        }
-
         mLookupBtn = (Button) findViewById(R.id.btn_lookup_item);
         mDoneBtn = (Button) findViewById(R.id.btn_done);
 
