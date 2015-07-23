@@ -11,5 +11,6 @@
         android:layout_gravity="center"
         android:text="YOUR ACTIVITY TITLE"
         android:textColor="#ffffff"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        />
 </LinearLayout>
