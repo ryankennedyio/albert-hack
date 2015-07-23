@@ -3,6 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        00bcd4
+    </style>
+    <style name="BigButton">
+        <!--<item name="android:textSize">32sp</item>-->
     </style>
 
 </resources>
