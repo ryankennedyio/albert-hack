@@ -31,7 +31,6 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     private TextView mTotalCost;
 
     private App mApp;
-    private Cart mCart;
 
     private LinearLayout mLinearLayout;
     private ZXingScannerView mScannerView;
@@ -50,9 +49,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     @Override
     protected void initResources() {
         super.initResources();
-        mCart = ((App) getApplicationContext()).getCart();
         mApp = ((App) getApplicationContext());
-        mCart = mApp.getCart();
 
         mLookupBtn = (Button) findViewById(R.id.btn_lookup_item);
         mDoneBtn = (Button) findViewById(R.id.btn_done);
@@ -65,7 +62,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
         insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
         mTotalCost = (TextView) findViewById(R.id.text_total_cost);
-        mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
+        mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
     }
 
     @Override
@@ -94,7 +91,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     @Override
     public void onResume() {
         super.onResume();
-        mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
+        mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
     }
 
     @Override
@@ -107,7 +104,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
             return;
         }
 
-        mCart.addProduct(product);
+        mApp.getCart().addProduct(product);
         // TODO Scan complete TOAST
     }
 }
