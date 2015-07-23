@@ -53,7 +53,6 @@
                     android:paddingBottom="0dip"
                     android:textSize="16dip"
                     android:textStyle="bold"
-                    android:clickable="true"
                     android:text="Name"/>
                 <LinearLayout
                 android:layout_width="match_parent"
@@ -69,7 +68,6 @@
                     android:paddingRight="10dip"
                     android:paddingBottom="10dip"
                     android:textSize="12dip"
-                    android:clickable="true"
                     android:text="0123456789"/>
 
                 <TextView
