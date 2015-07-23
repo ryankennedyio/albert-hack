@@ -24,9 +24,7 @@
             android:paddingRight="10dip"
             android:paddingBottom="0dip"
             android:textSize="16dip"
-            android:textStyle="bold"
-            android:onClick="onClickProductName"
-            android:clickable="true" />
+            android:textStyle="bold" />
 
         <TextView android:id="@+id/product_sku"
             android:layout_width="fill_parent"
@@ -35,9 +33,7 @@
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
             android:paddingBottom="10dip"
-            android:textSize="12dip"
-            android:onClick="onClickProductSKU"
-            android:clickable="true" />
+            android:textSize="12dip" />
     </LinearLayout>
 
     <TextView

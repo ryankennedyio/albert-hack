@@ -39,7 +39,7 @@ public class ProductAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mProductArray.get(position);
     }
 
     @Override
