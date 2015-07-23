@@ -33,6 +33,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.25"
                 android:layout_height="match_parent"
+                android:maxLines="1"
+                android:inputType="text"
                 android:background="@color/white"
                 android:layout_marginLeft="80px"
                 android:layout_marginRight="80px"/>
