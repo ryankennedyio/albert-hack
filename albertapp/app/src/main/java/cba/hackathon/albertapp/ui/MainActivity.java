@@ -1,30 +1,19 @@
 package cba.hackathon.albertapp.ui;
 
-import android.app.ActionBar;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Matrix;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.Result;
 
 import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
-import cba.hackathon.albertapp.models.Cart;
 import cba.hackathon.albertapp.models.Product;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -113,20 +102,31 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
 
     @Override
     public void handleResult(Result result) {
-        Log.v("SKU", result.getText());
-
         mScannerView.startCamera();
 
         Product product = mApp.getProductList().getProductBySKU(result.getText());
         if (product == null) {
-            // TODO TOAST FAIL (ITEM NOT FOUND)
-            Log.v("scan", "product is null");
+            Toast.makeText(
+                    MainActivity.this,
+                    "Product not found",
+                    Toast.LENGTH_SHORT
+            ).show();
             return;
         }
 
-        Log.v("scan", "product is not null");
         mApp.getCart().addProduct(product);
         mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
-        // TODO Scan complete TOAST
+
+        // Success Toast (marquee)
+        String toastText = product.title + " added to cart";
+        if (toastText.length() > 20) {
+            toastText = toastText.substring(0,19);
+            toastText += "...";
+        }
+        Toast.makeText(
+                MainActivity.this,
+                toastText,
+                Toast.LENGTH_SHORT
+        ).show();
     }
 }
