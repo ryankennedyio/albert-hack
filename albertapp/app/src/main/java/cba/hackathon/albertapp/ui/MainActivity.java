@@ -1,27 +1,37 @@
 package cba.hackathon.albertapp.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.zxing.Result;
 
 import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
 import cba.hackathon.albertapp.models.Cart;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity implements ZXingScannerView.ResultHandler {
 
     private Button mLookupBtn;
     private Button mDoneBtn;
     private TextView mTotalCost;
 
     private Cart mCart;
+
+    private LinearLayout mLinearLayout;
+    private ZXingScannerView mScannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,12 @@ public class MainActivity extends BaseActivity{
         mDoneBtn = (Button) findViewById(R.id.btn_done);
         mTotalCost = (TextView) findViewById(R.id.text_total_cosi);
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
+
+        mLinearLayout = (LinearLayout) findViewById(R.id.scanner_view);
+        mScannerView = new ZXingScannerView(this);
+        mScannerView.startCamera();
+        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
+        insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
     }
 
     @Override
@@ -73,4 +89,8 @@ public class MainActivity extends BaseActivity{
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
     }
 
+    @Override
+    public void handleResult(Result result) {
+
+    }
 }
