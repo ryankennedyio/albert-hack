@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,8 +39,8 @@ public class ConfirmActivity extends BaseActivity {
 
     private static int REQUEST_PAYMENT = 0;
     private static String PAYMENT_APPROVED = "APPROVED";
-    private Button mEmptyBtn;
-    private Button mPaymentButton;
+    private LinearLayout mEmptyBtn;
+    private LinearLayout mPaymentButton;
     private ListView mCartItems;
     private TextView mTotalCost;
 
@@ -68,8 +69,8 @@ public class ConfirmActivity extends BaseActivity {
         mCart = ((App) getApplicationContext()).getCart();
 
         mCartItems = (ListView) findViewById(R.id.list_cart_items);
-        mEmptyBtn = (Button) findViewById(R.id.btn_empty);
-        mPaymentButton = (Button) findViewById(R.id.btn_pay);
+        mEmptyBtn = (LinearLayout) findViewById(R.id.btn_empty);
+        mPaymentButton = (LinearLayout) findViewById(R.id.btn_pay);
         mTotalCost = (TextView) findViewById(R.id.text_total_cost);
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
 
