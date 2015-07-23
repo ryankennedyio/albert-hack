@@ -15,8 +15,6 @@ public class ProductList {
         mProductList = new ArrayList<>();
     }
 
-//    public ProductList
-
     public void addProduct(Product product) {
         mProductList.add(product);
     }

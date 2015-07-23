@@ -69,14 +69,18 @@ public class Cart {
     public String[] getProductsNamesList() {
         String[] namesList = new String[mCartList.size()];
         int i = 0;
-        for (Product p : mCartList.keySet()) {
-            namesList[i] = p.title;
+        for (Product product : mCartList.keySet()) {
+            namesList[i] = product.title;
             ++i;
         }
         return namesList;
     }
 
     public ProductList getProductList(){
-        return null;
+        ProductList returnList = new ProductList();
+        for ( Product product : mCartList.keySet()) {
+            returnList.addProduct(product);
+        }
+        return returnList;
     }
 }
