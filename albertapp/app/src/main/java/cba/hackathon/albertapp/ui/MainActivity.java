@@ -36,6 +36,9 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addDrawerItems();
+        getSupportActionBar().setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        mTitle = (TextView) findViewById(R.id.actionbar_title);
         mTitle.setText("Scan Item");
 
         initResources();
@@ -74,7 +77,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
             public void onClick(View view) {
                 mScannerView.stopCamera();
                 mLookupBtn.animate()
-                        .setDuration(300)
+                        .setDuration(0)
                         .alpha(.70f)
                         .setListener(new AnimatorListenerAdapter() {
                             @Override
@@ -103,7 +106,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
             public void onClick(View view) {
                 mScannerView.stopCamera();
                 mDoneBtn.animate()
-                    .setDuration(300)
+                    .setDuration(0)
                     .alpha(.70f)
                     .setListener(new AnimatorListenerAdapter() {
                         @Override

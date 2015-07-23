@@ -4,14 +4,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/blue_700"
     >
 
     <Button
+        style="@style/LoginBtn"
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_weight="0.2"
         android:text="@string/login"
         />
 
@@ -23,21 +24,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.3"></LinearLayout>
+            android:layout_weight="0.3">
+            <ImageView
+                android:paddingBottom="30dp"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@mipmap/comp_logo" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <EditText
+                style="@style/LoginField"
                 android:id="@+id/edit_pin"
                 android:layout_width="0dp"
                 android:layout_weight="0.25"
                 android:layout_height="match_parent"
                 android:maxLines="1"
                 android:inputType="text"
-                android:background="@color/white"
                 android:layout_marginLeft="80px"
-                android:layout_marginRight="80px"/>
+                android:layout_marginRight="80px"
+                android:hint="employee PIN"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

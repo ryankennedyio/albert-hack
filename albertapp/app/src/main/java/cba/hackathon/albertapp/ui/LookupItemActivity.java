@@ -3,12 +3,15 @@ package cba.hackathon.albertapp.ui;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,7 @@ public class LookupItemActivity extends BaseActivity {
 
     private EditText mSearchInput;
     private ListView mStockItemsList;
+    private ImageView mSearchButton;
 
     private ProductAdapter mAdapter;
 
@@ -32,9 +36,12 @@ public class LookupItemActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lookup_item);
         addDrawerItems();
+
+        getSupportActionBar().setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_search);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        mTitle.setText("Lookup item");
+
         initResources();
         setListeners();
 
@@ -63,6 +70,7 @@ public class LookupItemActivity extends BaseActivity {
         mSearchInput = (EditText) findViewById(R.id.edit_search);
         mSearchInput.setSelected(false);
         mStockItemsList = (ListView) findViewById(R.id.stock_items);
+        mSearchButton = (ImageView) findViewById(R.id.image_search);
     }
 
     @Override
@@ -89,6 +97,13 @@ public class LookupItemActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        mSearchInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("test","search clicked");
             }
         });
     }

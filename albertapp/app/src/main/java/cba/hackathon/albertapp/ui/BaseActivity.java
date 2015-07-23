@@ -38,9 +38,6 @@ abstract public class BaseActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar);
-        mTitle = (TextView) findViewById(R.id.actionbar_title);
     }
 
     protected void addDrawerItems(){
