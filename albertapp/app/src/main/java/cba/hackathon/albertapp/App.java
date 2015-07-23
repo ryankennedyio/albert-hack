@@ -61,6 +61,10 @@ public class App extends Application {
         mCurrentUser = user;
     }
 
+    public String getUser() {
+        return mCurrentUser;
+    }
+
     public Cart getCart() {
         return mCart;
     }
