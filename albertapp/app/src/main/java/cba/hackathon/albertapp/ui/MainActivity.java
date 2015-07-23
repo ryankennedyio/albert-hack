@@ -1,5 +1,7 @@
 package cba.hackathon.albertapp.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,10 +70,28 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
             @Override
             public void onClick(View view) {
                 mScannerView.stopCamera();
+                mLookupBtn.animate()
+                        .setDuration(300)
+                        .alpha(.70f)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                mLookupBtn.setAlpha(1.0f);
 
-                Intent intent = new Intent(MainActivity.this, LookupItemActivity.class);
-                startActivity(intent);
-                MainActivity.this.overridePendingTransition(R.anim.push_up_in, R.anim.no_animation);
+                                Intent intent = new Intent(MainActivity.this, LookupItemActivity.class);
+                                startActivity(intent);
+                                MainActivity.this.overridePendingTransition(R.anim.push_up_in, R.anim.no_animation);
+                            }
+
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+                                onAnimationEnd(animation);
+                            }
+
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+                            }
+                        });
             }
         });
 
@@ -79,10 +99,28 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
             @Override
             public void onClick(View view) {
                 mScannerView.stopCamera();
+                mDoneBtn.animate()
+                    .setDuration(300)
+                    .alpha(.70f)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            mDoneBtn.setAlpha(1.0f);
 
-                Intent intent = new Intent(MainActivity.this, ConfirmActivity.class);
-                startActivity(intent);
-                MainActivity.this.overridePendingTransition(R.anim.push_up_in, R.anim.no_animation);
+                            Intent intent = new Intent(MainActivity.this, ConfirmActivity.class);
+                            startActivity(intent);
+                            MainActivity.this.overridePendingTransition(R.anim.push_up_in, R.anim.no_animation);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            onAnimationEnd(animation);
+                        }
+
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                        }
+                    });
             }
         });
     }
