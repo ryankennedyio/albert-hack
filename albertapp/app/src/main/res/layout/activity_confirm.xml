@@ -53,26 +53,29 @@
         </RelativeLayout>
 
 
-        <RelativeLayout
+        <LinearLayout
+            style="@style/Navbar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"
-            android:orientation="horizontal"
-            android:background="@color/black">
+            android:layout_weight="0.3"
+            android:orientation="horizontal">
             <Button
                 android:id="@+id/btn_empty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent"
                 android:text="@string/empty"
+                android:layout_alignParentLeft="true"
                 />
             <Button
                 android:id="@+id/btn_pay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent"
                 android:text="@string/pay"
                 android:layout_alignParentRight="true"
                 />
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <ListView
