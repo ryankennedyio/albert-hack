@@ -21,7 +21,7 @@ public class ProductList {
 
     public Product getProductByName(String name) {
         for (Product p :mProductList) {
-            if (p.title == name) {
+            if (p.title.equals(name)) {
                 return p;
             }
         }
@@ -29,8 +29,8 @@ public class ProductList {
     }
 
     public Product getProductBySKU(String sku) {
-        for (Product p :mProductList) {
-            if (p.sku == sku) {
+        for (Product p : mProductList) {
+            if (p.sku.equals(sku)) {
                 return p;
             }
         }
