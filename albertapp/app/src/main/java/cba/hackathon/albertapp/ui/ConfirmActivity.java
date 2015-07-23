@@ -56,6 +56,9 @@ public class ConfirmActivity extends BaseActivity {
         addDrawerItems();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+        mTitle = (TextView) findViewById(R.id.actionbar_title);
         mTitle.setText("Confirm Order");
 
         initResources();
@@ -75,7 +78,6 @@ public class ConfirmActivity extends BaseActivity {
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
 
         mAdapter = new ProductAdapter(this, mCart.getProductList(),false);
-
         mCartItems.setAdapter(mAdapter);
     }
 
