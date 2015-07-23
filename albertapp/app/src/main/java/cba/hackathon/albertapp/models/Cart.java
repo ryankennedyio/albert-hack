@@ -1,68 +1,72 @@
 package cba.hackathon.albertapp.models;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * Created by Konrad on 22/07/2015.
  */
 public class Cart {
-    private ArrayList<Item> mItemList;
+    private LinkedHashMap<Product, Integer> mCartList;
+
     private float mTotalPrice;
 
     public Cart() {
-        mItemList = new ArrayList<>();
+        mCartList = new LinkedHashMap<>();
         mTotalPrice = 0.0f;
     }
 
     public void addProduct(Product product) {
-        boolean isContained = false;
-        for (Item item : mItemList) {
-            if (item.getProductName() == product.title) {
-                item.increment();
-                isContained = true;
-                mTotalPrice += item.getPrice();
-            }
-        }
-        if (!isContained) {
-            Item item = new Item(product, 1);
-            mItemList.add(item);
-            mTotalPrice += item.getPrice();
+        Integer mappedProduct = mCartList.get(product);
+        if (mappedProduct == null) {
+            mCartList.put(product, 1);
+        } else {
+            mCartList.put(product, mappedProduct+1);
         }
     }
 
     public void removeProduct(Product product) {
-        for (Item item : mItemList) {
-            if (item.getProductName() == product.title) {
-                item.decrement();
-                mTotalPrice -= item.getPrice();
-            }
+        Integer mappedProduct = mCartList.get(product);
+        if (mappedProduct == null) {
+            throw new RuntimeException();
+        }
+
+        if (mappedProduct == 1) {
+            mCartList.remove(product);
+            return;
+        }
+
+        if (mappedProduct != null) {
+            mCartList.put(product, mappedProduct - 1);
         }
     }
 
     public void removeAllOfProduct(Product product) {
-        for (Item item : mItemList) {
-            if (item.getProductName() == product.title) {
-                mTotalPrice -= item.getTotalPrice();
-                item.resetCount();
-            }
+        Integer mappedProduct = mCartList.get(product);
+        if (mappedProduct != null) {
+            mTotalPrice -= product.price * mappedProduct;
+            mCartList.remove(product);
+
         }
     }
 
-    public float getTotalPrice() { return mTotalPrice; }
+    public float getTotalPrice() {
+        if (mTotalPrice < 0) {
+            throw new RuntimeException();
+        }
+        return mTotalPrice;
+    }
 
     public void wipeItems() {
-        mItemList.clear();
+        mCartList.clear();
         mTotalPrice = 0.0f;
     }
 
-    public ArrayList<Item> getProductList() {
-        return mItemList;
-    }
-
     public String[] getProductsNamesList() {
-        String[] namesList = new String[mItemList.size()];
-        for (int i = 0; i < mItemList.size(); ++i) {
-            namesList[i] = mItemList.get(i).getProductName();
+        String[] namesList = new String[mCartList.size()];
+        int i = 0;
+        for (Product p : mCartList.keySet()) {
+            namesList[i] = p.title;
+            ++i;
         }
         return namesList;
     }
