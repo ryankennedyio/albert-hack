@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.zxing.Result;
 import cba.hackathon.albertapp.App;
 import cba.hackathon.albertapp.R;
 import cba.hackathon.albertapp.models.Cart;
+import cba.hackathon.albertapp.models.Product;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MainActivity extends BaseActivity implements ZXingScannerView.ResultHandler {
@@ -28,6 +30,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     private Button mDoneBtn;
     private TextView mTotalCost;
 
+    private App mApp;
     private Cart mCart;
 
     private LinearLayout mLinearLayout;
@@ -46,7 +49,8 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
 
     @Override
     protected void initResources() {
-        mCart = ((App) getApplicationContext()).getCart();
+        mApp = ((App) getApplicationContext());
+        mCart = mApp.getCart();
 
         mLookupBtn = (Button) findViewById(R.id.btn_lookup_item);
         mDoneBtn = (Button) findViewById(R.id.btn_done);
@@ -56,6 +60,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         mLinearLayout = (LinearLayout) findViewById(R.id.scanner_view);
         mScannerView = new ZXingScannerView(this);
         mScannerView.startCamera();
+        mScannerView.setResultHandler(this);
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
         insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
     }
@@ -91,6 +96,16 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
 
     @Override
     public void handleResult(Result result) {
+        Log.v("SKU", result.getText());
 
+        Product product = mApp.getProductList().getProductBySKU(result.getText());
+        if (product == null) {
+            // TODO TOAST FAIL (ITEM NOT FOUND)
+            return;
+        }
+
+        mCart.addProduct(product);
+        // TODO Scan complete TOAST
+        x`
     }
 }

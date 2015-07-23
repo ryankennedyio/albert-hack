@@ -1,14 +1,8 @@
 package cba.hackathon.albertapp.ui;
 
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +30,6 @@ public class LookupItemActivity extends BaseActivity {
         addDrawerItems();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
 
         initResources();
         setListeners();
@@ -85,7 +78,6 @@ public class LookupItemActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
 
             }
-
         });
     }
 
