@@ -72,7 +72,7 @@ public class ConfirmActivity extends BaseActivity {
         mTotalCost = (TextView) findViewById(R.id.text_total_cost);
         mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
 
-        mAdapter = new ProductAdapter(this, mCart.getProductList());
+        mAdapter = new ProductAdapter(this, mCart.getProductList(),false);
 
         mCartItems.setAdapter(mAdapter);
     }
@@ -84,7 +84,7 @@ public class ConfirmActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 mCart.wipeItems();
-                mAdapter = new ProductAdapter(view.getContext(), mCart.getProductList());
+                mAdapter = new ProductAdapter(view.getContext(), mCart.getProductList(),false);
                 mCartItems.setAdapter(mAdapter);
                 mTotalCost.setText("$" + String.format("%.2f", mCart.getTotalPrice()));
             }
