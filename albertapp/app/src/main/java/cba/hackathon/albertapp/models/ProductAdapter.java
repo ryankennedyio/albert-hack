@@ -96,12 +96,11 @@ public class ProductAdapter extends BaseAdapter implements Filterable {
         ViewGroup layout = (ViewGroup) deleteProduct.getParent();
         if( lookUpActivity ){
             if(layout!=null) {
-                layout.removeView(deleteProduct);
-                //layout.removeView(productQuantity);
+                deleteProduct.setVisibility(View.GONE);
             }
         }else{
             if(layout!=null) {
-                layout.removeView(productPriceBig);
+                productPriceBig.setVisibility(View.GONE);
             }
         }
 

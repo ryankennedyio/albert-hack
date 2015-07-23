@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ import cba.hackathon.albertapp.models.ProductAdapter;
 public class LookupItemActivity extends BaseActivity {
 
     private EditText mSearchInput;
-    private Button mSearchBtn;
+    private ImageButton mSearchBtn;
     private ListView mStockItemsList;
 
     private ProductAdapter mAdapter;
@@ -61,7 +62,7 @@ public class LookupItemActivity extends BaseActivity {
         super.initResources();
         mSearchInput = (EditText) findViewById(R.id.edit_search);
         mSearchInput.setSelected(false);
-        mSearchBtn = (Button) findViewById(R.id.btn_search);
+        mSearchBtn = (ImageButton) findViewById(R.id.btn_search);
         mStockItemsList = (ListView) findViewById(R.id.stock_items);
     }
 
