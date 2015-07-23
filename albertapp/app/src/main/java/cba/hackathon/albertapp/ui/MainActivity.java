@@ -101,10 +101,13 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         Product product = mApp.getProductList().getProductBySKU(result.getText());
         if (product == null) {
             // TODO TOAST FAIL (ITEM NOT FOUND)
+            Log.v("scan", "product is null");
             return;
         }
 
+        Log.v("scan", "product is not null");
         mApp.getCart().addProduct(product);
+        mTotalCost.setText("$" + String.format("%.2f", mApp.getCart().getTotalPrice()));
         // TODO Scan complete TOAST
     }
 }
