@@ -24,6 +24,10 @@
         <item name="android:background">@null</item>
     </style>
 
+    <style name="Button">
+        <item name="android:background">@color/blue_700</item>
+    </style>
+
     <style name="SearchField">
         <item name="android:textSize">40sp</item>
         <item name="android:textColorHint">@color/white</item>
