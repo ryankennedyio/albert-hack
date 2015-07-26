@@ -62,12 +62,14 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     private void initScanner() {
         mScannerView = new ZXingScannerView(this);
         mScannerView.startCamera();
-
         mScannerView.setResultHandler(this);
+
+        // Inflate view
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
         insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
 
         Log.v("scanner", "Started scanner");
+        mScannerView.setFlash(true);
     }
 
     @Override
