@@ -9,4 +9,4 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 </merge>
-<!-- From: file:/Users/dushyanth/Development/android_work/barcodescanner/core/src/main/res/layout/merge_camera_preview_view_finder.xml --><!-- From: file:/C:/hackathon/albert-hack/albertapp/zxing/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.8/res/layout/merge_camera_preview_view_finder.xml -->
+<!-- From: file:/C:/hackathon/albert-hack/albertapp/core/src/main/res/layout/merge_camera_preview_view_finder.xml --><!-- From: file:/C:/hackathon/albert-hack/albertapp/zxing/build/intermediates/exploded-aar/albertapp/core/unspecified/res/layout/merge_camera_preview_view_finder.xml -->

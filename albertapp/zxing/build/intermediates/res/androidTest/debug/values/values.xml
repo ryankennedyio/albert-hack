@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/hackathon/albert-hack/albertapp/zxing/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.8/res/values/values.xml -->
+    <!-- From: file:/C:/hackathon/albert-hack/albertapp/zxing/build/intermediates/exploded-aar/albertapp/core/unspecified/res/values/values.xml -->
     <eat-comment/>
     <color name="viewfinder_border">#ffafed44</color>
     <color name="viewfinder_laser">#ffcc0000</color>

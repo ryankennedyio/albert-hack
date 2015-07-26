@@ -1,2 +1,3 @@
 include ':app', ':aevi-api-2.3.0'
 include ':zxing'
+include ':core'

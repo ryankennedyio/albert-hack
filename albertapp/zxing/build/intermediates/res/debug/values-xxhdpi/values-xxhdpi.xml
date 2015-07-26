@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/hackathon/albert-hack/albertapp/zxing/build/intermediates/exploded-aar/albertapp/core/unspecified/res/values-xxhdpi/values-xxhdpi.xml -->
+    <eat-comment/>
+    <integer name="viewfinder_border_length">100</integer>
+    <integer name="viewfinder_border_width">6</integer>
+</resources>
