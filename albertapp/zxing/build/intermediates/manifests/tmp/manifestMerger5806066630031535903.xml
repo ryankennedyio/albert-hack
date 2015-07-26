@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.dm7.barcodescanner.zxing.test">
+
+    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" />
+
+    <application>
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+                     android:targetPackage="me.dm7.barcodescanner.zxing.test"
+                     android:handleProfiling="false"
+                     android:functionalTest="false"
+                     android:label="Tests for me.dm7.barcodescanner.zxing.test"/>
+</manifest>
