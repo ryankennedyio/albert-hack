@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
 
         Log.v("scanner", "Started scanner");
-        mScannerView.setFlash(true);
+//        mScannerView.setFlash(true);
     }
 
     @Override
