@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,9 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
 
     private App mApp;
 
+    private HandlerThread mScannerHandlerThread;
+    private Handler mScannerHandler;
+
     private LinearLayout mLinearLayout;
     private ZXingScannerView mScannerView;
 
@@ -42,6 +47,7 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
         mTitle.setText("Scan Item");
 
         initResources();
+        initScanner();
         setListeners();
     }
 
@@ -60,16 +66,30 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     }
 
     private void initScanner() {
-        mScannerView = new ZXingScannerView(this);
-        mScannerView.startCamera();
-        mScannerView.setResultHandler(this);
+            mScannerHandlerThread = new HandlerThread("SCANNER_THREAD");
+            mScannerHandlerThread.start();
+            mScannerHandler = new Handler(mScannerHandlerThread.getLooper());
 
-        // Inflate view
-        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
-        insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+            mScannerHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mScannerView = new ZXingScannerView(MainActivity.this);
+                    mScannerView.startCamera();
+                    mScannerView.setResultHandler(MainActivity.this);
 
-        Log.v("scanner", "Started scanner");
+                    // Inflate view
+                    final ViewGroup insertPoint = (ViewGroup) findViewById(R.id.scanner_view);
+                    insertPoint.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            insertPoint.addView(mScannerView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+                        }
+                    });
+
+                    Log.v("scanner", "Started scanner");
 //        mScannerView.setFlash(true);
+                }
+            });
     }
 
     @Override
@@ -149,13 +169,13 @@ public class MainActivity extends BaseActivity implements ZXingScannerView.Resul
     public void onPause() {
         super.onPause();
 
-        mScannerView.stopCamera();
-        mScannerView = null;
+//        mScannerView.stopCamera();
+//        mScannerView = null;
     }
 
     @Override
     public void handleResult(Result result) {
-        initScanner();
+//        initScanner();
 
         Product product = mApp.getProductList().getProductBySKU(result.getText());
         if (product == null) {
