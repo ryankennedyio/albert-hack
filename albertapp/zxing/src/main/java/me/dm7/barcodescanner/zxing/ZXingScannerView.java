@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.hardware.Camera;
+import android.os.Handler;
 import android.util.AttributeSet;
 
 import com.google.zxing.BarcodeFormat;
@@ -122,12 +123,10 @@ public class ZXingScannerView extends BarcodeScannerView {
         }
 
         if (rawResult != null) {
-            stopCamera();
             if(mResultHandler != null) {
                 mResultHandler.handleResult(rawResult);
+                stopAndRestartCamera();
             }
-        } else {
-//            camera.setOneShotPreviewCallback(this);
         }
     }
 

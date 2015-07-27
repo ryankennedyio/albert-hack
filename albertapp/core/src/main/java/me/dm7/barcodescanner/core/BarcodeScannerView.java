@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.hardware.Camera;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -15,6 +16,8 @@ public abstract class BarcodeScannerView extends FrameLayout implements Camera.P
     private CameraPreview mPreview;
     private IViewFinder mViewFinderView;
     private Rect mFramingRectInPreview;
+
+    private Handler mRestartCameraHandler;
 
     public BarcodeScannerView(Context context) {
         super(context);
@@ -41,6 +44,9 @@ public abstract class BarcodeScannerView extends FrameLayout implements Camera.P
             throw new IllegalArgumentException("IViewFinder object returned by " +
                     "'createViewFinderView()' should be instance of android.view.View");
         }
+
+        // Camera restart handler on timer
+        mRestartCameraHandler = new Handler();
     }
 
     /**
@@ -78,6 +84,19 @@ public abstract class BarcodeScannerView extends FrameLayout implements Camera.P
             mCamera.release();
             mCamera = null;
         }
+    }
+
+    public void stopAndRestartCamera() {
+        mCamera.stopPreview();
+        // TODO animate scan successful
+        Runnable restartPreview = new Runnable() {
+            @Override
+            public void run() {
+                mCamera.startPreview();
+                mCamera.autoFocus(mPreview.autoFocusCB);
+            }
+        };
+        mRestartCameraHandler.postDelayed(restartPreview, 1000);
     }
 
     public synchronized Rect getFramingRectInPreview(int previewWidth, int previewHeight) {

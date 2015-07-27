@@ -79,7 +79,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                 setupCameraParameters();
                 mCamera.setPreviewDisplay(getHolder());
                 mCamera.setDisplayOrientation(getDisplayOrientation());
-                mCamera.setOneShotPreviewCallback(mPreviewCallback);
                 mCamera.startPreview();
                 if(mAutoFocus) {
                     if (mSurfaceCreated) { // check if surface created before using autofocus
